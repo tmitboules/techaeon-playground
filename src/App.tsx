@@ -8,7 +8,11 @@ function App() {
       <SiteHeader />
       <Coin />
 
-      <TechaeonCoin shape={Shapes.square} color={{ r: 241, g: 198, b: 81 }} />
+      <TechaeonCoin
+        shape={Shapes.square}
+        color={{ r: 255, g: 194, b: 38 }}
+        scale={2}
+      />
     </main>
   );
 }

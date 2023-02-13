@@ -4,7 +4,7 @@ import tinycolor, { ColorFormats } from "tinycolor2";
 import { generatePalette } from "../../utils";
 
 export enum Shapes {
-  square = "M 250 125 Q 250 0 125 0 Q 0 0 0 125 Q 0 250 125 250 Q 250 250 250 125 Z",
+  square = "M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z",
 }
 
 type Props = {
@@ -13,30 +13,74 @@ type Props = {
   color: ColorFormats.RGB;
 };
 
+const STARTING_POINT = 10;
+
 const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
   const palette = generatePalette(color);
+  const size = 260 * scale;
+
+  // const gradient1 = `linear-gradient(`
 
   return (
     <>
       <Stage
-        width={252 * scale}
-        height={252 * scale}
+        width={size}
+        height={size}
         scale={{ x: scale, y: scale }}
+        className="p-10"
       >
         <Layer>
-          <Path x={1} y={1} data={shape} stroke={"#aaa"} fill="blue" />
           <Path
-            x={250 * 0.04 + 1}
-            y={250 * 0.04 + 1}
+            x={STARTING_POINT}
+            y={STARTING_POINT}
             data={shape}
-            scale={{ x: 0.92, y: 0.92 }}
-            stroke={"#fff"}
-            fill="red"
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientColorStops={[
+              0,
+              palette[500],
+              0.5,
+              palette[100],
+              1,
+              palette[500],
+            ]}
+          />
+          <Path
+            x={240 * 0.015 + STARTING_POINT}
+            y={240 * 0.015 + STARTING_POINT}
+            scale={{ x: 0.97, y: 0.97 }}
+            data={shape}
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientColorStops={[
+              0,
+              palette[900],
+              0.5,
+              palette[200],
+              1,
+              palette[900],
+            ]}
+          />
+          <Path
+            x={250 * 0.03 + STARTING_POINT}
+            y={250 * 0.03 + STARTING_POINT}
+            data={shape}
+            scale={{ x: 0.94, y: 0.94 }}
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientColorStops={[
+              0,
+              palette[100],
+              0.5,
+              palette[500],
+              1,
+              palette[100],
+            ]}
           />
         </Layer>
       </Stage>
       <div className="flex w-[900px] h-16">
-        {palette.map((c) => (
+        {Object.values(palette).map((c) => (
           <div
             key={c}
             className={`h-full flex-1 `}
