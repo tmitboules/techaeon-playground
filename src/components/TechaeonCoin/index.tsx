@@ -1,6 +1,7 @@
 import React from "react";
 import { Layer, Path, Stage } from "react-konva";
 import tinycolor, { ColorFormats } from "tinycolor2";
+import { generatePalette } from "../../utils";
 
 export enum Shapes {
   square = "M 250 125 Q 250 0 125 0 Q 0 0 0 125 Q 0 250 125 250 Q 250 250 250 125 Z",
@@ -13,9 +14,7 @@ type Props = {
 };
 
 const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
-  const palette = tinycolor(color).monochromatic();
-
-  console.log(palette.map((tiny) => tiny.toRgbString()));
+  const palette = generatePalette(color);
 
   return (
     <>
@@ -36,11 +35,12 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
           />
         </Layer>
       </Stage>
-      <div className="flex w-[500px] h-16">
+      <div className="flex w-[900px] h-16">
         {palette.map((c) => (
           <div
+            key={c}
             className={`h-full flex-1 `}
-            style={{ backgroundColor: c.toRgbString() }}
+            style={{ backgroundColor: c }}
           ></div>
         ))}
       </div>
