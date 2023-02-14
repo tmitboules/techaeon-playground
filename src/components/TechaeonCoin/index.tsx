@@ -14,6 +14,7 @@ type Props = {
 };
 
 const STARTING_POINT = 10;
+const BASE_SIZE = 240;
 
 const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
   const palette = generatePalette(color);
@@ -35,7 +36,7 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
             y={STARTING_POINT}
             data={shape}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
             fillLinearGradientColorStops={[
               0,
               palette[500],
@@ -46,12 +47,12 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
             ]}
           />
           <Path
-            x={240 * 0.015 + STARTING_POINT}
-            y={240 * 0.015 + STARTING_POINT}
+            x={BASE_SIZE * 0.015 + STARTING_POINT}
+            y={BASE_SIZE * 0.015 + STARTING_POINT}
             scale={{ x: 0.97, y: 0.97 }}
             data={shape}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
             fillLinearGradientColorStops={[
               0,
               palette[900],
@@ -62,12 +63,12 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
             ]}
           />
           <Path
-            x={250 * 0.03 + STARTING_POINT}
-            y={250 * 0.03 + STARTING_POINT}
+            x={BASE_SIZE * 0.03 + STARTING_POINT}
+            y={BASE_SIZE * 0.03 + STARTING_POINT}
             data={shape}
             scale={{ x: 0.94, y: 0.94 }}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: 240 }}
+            fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
             fillLinearGradientColorStops={[
               0,
               palette[100],
@@ -76,6 +77,13 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
               1,
               palette[100],
             ]}
+          />
+          <Path
+            x={BASE_SIZE * 0.15 + STARTING_POINT}
+            y={BASE_SIZE * 0.15 + STARTING_POINT}
+            data={shape}
+            scale={{ x: 0.7, y: 0.7 }}
+            fill="red"
           />
         </Layer>
       </Stage>
