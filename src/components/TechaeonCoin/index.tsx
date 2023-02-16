@@ -1,11 +1,13 @@
-import React from "react";
-import { Layer, Path, Stage, Text, TextPath } from "react-konva";
+import React, { useState } from "react";
+import { Layer, Path, Stage, Image, Text, TextPath } from "react-konva";
 import tinycolor, { ColorFormats } from "tinycolor2";
 import { generatePalette } from "../../utils";
+import InAirImg from "../../assets/in_air.png";
+import useImage from "use-image";
 import { useTextWidth } from '@imagemarker/use-text-width';
 
 export enum Shapes {
-  square = "M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z",
+  square = "M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z M 200 120 Q 200 200 120 200 Q 40 200 40 120 Q 40 40 120 40 Q 200 40 200 120 Z",
 }
 
 type Props = {
@@ -20,6 +22,7 @@ const BASE_SIZE = 240;
 const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
+  const [image] = useImage("https://konvajs.org/assets/lion.png");
   const startingXPointForText = size - (size * 0.9)
   const endingXPointForText = size - (size * 0.1)
   const startingYPointForText = size - (size * 0.9)
@@ -31,7 +34,7 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
   const topTextPath = "M " + startingXPointForText + "," + startingYPointForText + " Q " + ((startingXPointForText+endingXPointForText)/2) + "," + (startingYPointForText - 15) + " " + endingXPointForText + "," + startingYPointForText
   
 
-  // const gradient1 = `linear-gradient(`
+  function loadImage() {}
 
   return (
     <>
@@ -42,6 +45,23 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
         className="p-10"
       >
         <Layer>
+          <Path
+            x={BASE_SIZE * 0.15 + STARTING_POINT}
+            y={BASE_SIZE * 0.15 + STARTING_POINT}
+            data={shape.split("Z")[0]}
+            scale={{ x: 0.7, y: 0.7 }}
+            fill={palette[900]}
+          />
+          <Image
+            image={image}
+            x={BASE_SIZE * 0.22 + STARTING_POINT}
+            y={BASE_SIZE * 0.25 + STARTING_POINT}
+            // // data={shape.split("Z")[0]}
+            // scale={{ x: 0.7, y: 0.7 }}
+            width={120}
+            height={120}
+            // fill="red"
+          />
           <Path
             x={STARTING_POINT}
             y={STARTING_POINT}
