@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+
 html,
 body {
   padding: 0;

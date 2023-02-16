@@ -14,27 +14,37 @@ type Props = {
   shape: Shapes;
   scale?: number;
   color: ColorFormats.RGB;
+  branding: string;
 };
 
 const STARTING_POINT = 10;
 const BASE_SIZE = 240;
 
-const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
+const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
   const [image] = useImage("https://konvajs.org/assets/lion.png");
-  const startingXPointForText = size - (size * 0.9)
-  const endingXPointForText = size - (size * 0.1)
-  const startingYPointForText = size - (size * 0.9)
-  const endingYPointForText = size - (size * 0.1)
+  const lengthOfText = "AEONPASS TECHAEON".length * 9
 
-  const width = useTextWidth({ text: 'AEONPASS TECHAEON', font: '12px Times' });
-  console.log(width)
+  const startingXPointForText = ((260 - lengthOfText) / 2) + 5
+  const endingXPointForText = startingXPointForText + lengthOfText
+  const startingYPointForText = 60
+  const endingYPointForText = 200
 
-  const topTextPath = "M " + startingXPointForText + "," + startingYPointForText + " Q " + ((startingXPointForText+endingXPointForText)/2) + "," + (startingYPointForText - 15) + " " + endingXPointForText + "," + startingYPointForText
+
+  const width = useTextWidth({ text: branding, font: '12px Cinzel' });
+
+
+
+  const topTextPath = "M " + startingXPointForText + "," + startingYPointForText + " Q " + (260 / 2) + "," + (startingYPointForText - 50) + " " + endingXPointForText + "," + (startingYPointForText + 5)
+  const bottomTextPath = "M " + (endingXPointForText - 7) + "," + endingYPointForText + " Q " + (260 / 2) + "," + (endingYPointForText + 50) + " " + startingXPointForText + "," + endingYPointForText
+
+  const leftTextPath = "M " + startingYPointForText + "," + (endingXPointForText - 7) + " Q " + (startingXPointForText - 50) + "," + (260 / 2) + " " + startingYPointForText + "," + startingXPointForText
+  const RightTextPath = "M " + endingYPointForText + "," + startingXPointForText + " Q " + (endingYPointForText + 50) + "," + (260 / 2) + " " + endingYPointForText + "," + endingXPointForText
+
   
 
-  function loadImage() {}
+  function loadImage() { }
 
   return (
     <>
@@ -60,7 +70,7 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
             // scale={{ x: 0.7, y: 0.7 }}
             width={120}
             height={120}
-            // fill="red"
+          // fill="red"
           />
           <Path
             x={STARTING_POINT}
@@ -108,24 +118,42 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
               1,
               palette[100],
             ]}
-            
           />
-          <TextPath fill={'#333'} fontSize={12} fontFamily={'Times'} text={"AEONPASS TECHAEON"} data={'M 70,50  Q 130,18 190,50'} align={'center'} ></TextPath>
-          <TextPath fill={'#333'} fontSize={12} fontFamily={'Arial-Bold'} text={"AEONPASS TECHAEON"} data={'M 200,60  Q 240,130 200,200'} align={'center'}></TextPath>
-          <TextPath fill={'#333'} fontSize={12} fontFamily={'Arial'} text={"AEONPASS TECHAEON"} data={'M 200,200  Q 130,240 60,200'} align={'center'}></TextPath>
-          <TextPath fill={'#333'} fontSize={12} fontFamily={'Arial-Bold'} text={"AEONPASS TECHAEON"} data={'M 60,200  Q 20,130 60,60'} align={'center'}></TextPath>
-          {/* <TextPath x={0} y={0} fill={'#333'} fontSize={16} fontFamily={'Arial'} text={"All the world's a stage, and all the men and women merely players."} data={'M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z'}></TextPath> */}
-          <Path
-            x={BASE_SIZE * 0.15 + STARTING_POINT}
-            y={BASE_SIZE * 0.15 + STARTING_POINT}
-            data={shape}
-            scale={{ x: 0.7, y: 0.7 }}
-            fill="red"
-
-          />
+          <TextPath
+            data={topTextPath}
+            fill={palette[900]}
+            fontSize={11}
+            fontStyle={'900'}
+            fontFamily={'Cinzel'}
+            text={branding}
+            align={'center'} ></TextPath>
+          <TextPath
+            fill={palette[900]}
+            fontSize={11}
+            fontStyle={'900'}
+            fontFamily={'Cinzel'}
+            text={branding}
+            data={RightTextPath}
+            align={'center'}></TextPath>
+          <TextPath
+            fill={palette[900]}
+            fontSize={11}
+            fontStyle={'900'}
+            fontFamily={'Cinzel'}
+            text={branding}
+            data={bottomTextPath}
+            align={'center'}></TextPath>
+          <TextPath
+            fill={palette[900]}
+            fontSize={11}
+            fontStyle={'900'}
+            fontFamily={'Cinzel'}
+            text={branding}
+            data={leftTextPath}
+            align={'center'}></TextPath>
         </Layer>
       </Stage>
-      <div className="flex w-[900px] h-16">
+      {/* <div className="flex w-[900px] h-16">
         {Object.values(palette).map((c) => (
           <div
             key={c}
@@ -133,9 +161,11 @@ const TechaeonCoin = ({ scale = 1, shape, color }: Props) => {
             style={{ backgroundColor: c }}
           ></div>
         ))}
-      </div>
+      </div> */}
     </>
   );
+
+  
 };
 
 export default TechaeonCoin;
