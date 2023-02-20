@@ -79,68 +79,6 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
     </Layer>
   );
 
-  const shapeLayer = (
-    <Layer>
-      <Path
-        x={BASE_SIZE * 0.15 + STARTING_POINT}
-        y={BASE_SIZE * 0.15 + STARTING_POINT}
-        data={shape.split("Z")[0]}
-        scale={{ x: 0.7, y: 0.7 }}
-        fill={palette[900]}
-      />
-      <Path
-        x={STARTING_POINT}
-        y={STARTING_POINT}
-        data={shape}
-        fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-        fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
-        fillLinearGradientColorStops={[
-          0,
-          palette[500],
-          0.5,
-          palette[100],
-          1,
-          palette[500],
-        ]}
-      />
-      <Path
-        x={BASE_SIZE * 0.015 + STARTING_POINT}
-        y={BASE_SIZE * 0.015 + STARTING_POINT}
-        scale={{ x: 0.97, y: 0.97 }}
-        data={shape}
-        fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-        fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
-        fillLinearGradientColorStops={[
-          0,
-          palette[900],
-          0.5,
-          palette[200],
-          1,
-          palette[900],
-        ]}
-      />
-      <Path
-        x={BASE_SIZE * 0.03 + STARTING_POINT}
-        y={BASE_SIZE * 0.03 + STARTING_POINT}
-        data={shape}
-        scale={{ x: 0.94, y: 0.94 }}
-        fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-        fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
-        fillLinearGradientColorStops={[
-          0,
-          palette[100],
-          0.5,
-          palette[500],
-          1,
-          palette[100],
-        ]}
-      />
-    </Layer>
-  );
-
-  const stageRefFront = React.useRef(null);
-  const stageRefBack = React.useRef(null);
-
   return (
     <AnimationWrapper
       height={size}
@@ -149,11 +87,12 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
         <FrontSide
           BASE_SIZE={BASE_SIZE}
           STARTING_POINT={STARTING_POINT}
+          shape={shape}
+          palette={palette}
           image={image}
           size={size}
           x={scale}
           y={scale}
-          shapeLayer={shapeLayer}
           textLayer={textLayer}
         ></FrontSide>
       }
@@ -165,7 +104,8 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
           size={size}
           x={scale}
           y={scale}
-          shapeLayer={shapeLayer}
+          shape={shape}
+          palette={palette}
           textLayer={textLayer}
         ></BackSide>
       }
