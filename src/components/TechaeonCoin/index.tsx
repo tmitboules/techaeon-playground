@@ -5,6 +5,7 @@ import FrontSide from "./FrontSide";
 import BackSide from "./BackSide";
 import { Layer, Path, TextPath } from "react-konva";
 import AnimationWrapper from "./AnimationWrapper";
+import React from "react";
 
 export enum Shapes {
   //square = "M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z M 200 120 Q 200 200 120 200 Q 40 200 40 120 Q 40 40 120 40 Q 200 40 200 120 Z",
@@ -136,6 +137,9 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
       />
     </Layer>
   );
+
+  const stageRefFront = React.useRef(null);
+  const stageRefBack = React.useRef(null);
 
   return (
     <AnimationWrapper
