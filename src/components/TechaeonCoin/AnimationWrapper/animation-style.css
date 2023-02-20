@@ -1,0 +1,74 @@
+html,
+body {
+  -webkit-perspective: 800px;
+}
+
+.coin {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.coin {
+  transition: -webkit-transform 1s ease-in-out;
+  -webkit-transform-style: preserve-3d;
+}
+
+.coin div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.coin div {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+}
+
+.front-side {
+  z-index: 100;
+}
+
+.back-side {
+  -webkit-transform: rotateY(-180deg);
+}
+
+.coin.front {
+  -webkit-animation: flipFront 1s ease-out forwards;
+  -moz-animation: flipFront 1s ease-out forwards;
+  -o-animation: flipFront 1s ease-out forwards;
+  animation: flipFront 1s ease-out forwards;
+}
+.coin.back {
+  -webkit-animation: flipBack 1s ease-out forwards;
+  -moz-animation: flipBack 1s ease-out forwards;
+  -o-animation: flipBack 1s ease-out forwards;
+  animation: flipBack 1s ease-out forwards;
+}
+
+@keyframes flipFront {
+  0% {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flipBack {
+  0% {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+}
