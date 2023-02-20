@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layer, Path, Stage, Image, Text, TextPath } from "react-konva";
+
 import tinycolor, { ColorFormats } from "tinycolor2";
 import { generatePalette } from "../../utils";
 import InAirImg from "../../assets/in_air.png";
@@ -18,15 +19,29 @@ type Props = {
   scale?: number;
   color: ColorFormats.RGB;
   branding: string;
+  
+  // onClickDownloadImage : Function;
 };
 
 const STARTING_POINT = 10;
 const BASE_SIZE = 240;
 
+function downloadURI(uri: any, name: any) {
+  var link = document.createElement('a');
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
   const [image] = useImage("https://konvajs.org/assets/lion.png");
+  
+  if (image) {    image.crossOrigin = "Anonymous";  }
+
   const lengthOfText = "AEONPASS TECHAEON".length * 9;
 
   const startingXPointForText = (260 - lengthOfText) / 2 + 5;
@@ -35,6 +50,8 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
   const endingYPointForText = 200;
 
   const width = useTextWidth({ text: branding, font: "12px Cinzel" });
+
+  
 
   const topTextPath =
     "M " +
@@ -90,15 +107,28 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
     "," +
     endingXPointForText;
 
-  function loadImage() {}
+  const stageRef = React.useRef(null);
+
+  const handleExport = () => {
+   
+    //@ts-ignore
+    const uri = stageRef.current.toDataURL();
+    downloadURI(uri, 'stage.png');
+  };
+
+//  onClickDownloadImage(
+//     handleExport
+//  )
 
   return (
     <>
+      <button onClick={handleExport}>Download Image</button>
       <Stage
         width={size}
         height={size}
         scale={{ x: scale, y: scale }}
         className="p-10"
+        ref={stageRef}
       >
         <Layer>
           <Path
@@ -116,7 +146,7 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
             // scale={{ x: 0.7, y: 0.7 }}
             width={120}
             height={120}
-            // fill="red"
+          // fill="red"
           />
           <Path
             x={STARTING_POINT}

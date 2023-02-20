@@ -6,7 +6,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <AnimationApp></AnimationApp>
+    <App />
+    {/* <AnimationApp></AnimationApp> */}
   </React.StrictMode>,
 )

@@ -9,7 +9,7 @@ interface Props {
 
 function AnimateCoin({ frontSide, backSide, height, width }: Props) {
   const [coinStatus, setCoin] = useState("");
-
+  
   const flipCoin = () => {
     setCoin("");
     const flipResult = Math.random();

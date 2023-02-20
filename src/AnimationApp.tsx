@@ -1,12 +1,26 @@
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin, { Shapes } from "./components/TechaeonCoin";
 import AnimateCoin from "./components/AnimateCoin";
+import React from "react";
 
 function AnimationApp() {
+
+  const stageRef = React.useRef(null);
+  const handleExport = () => {
+    
+    const uri = stageRef.current.toDataURL();
+    console.log(uri);
+    // we also can save uri as file
+    // but in the demo on Konva website it will not work
+    // because of iframe restrictions
+    // but feel free to use it in your apps:
+    // downloadURI(uri, 'stage.png');
+  };
+  
   return (
     <main>
       <SiteHeader />
-
+      <button onClick={handleExport}>Click here to log stage data URL</button>
       <div
         style={{
           display: "flex",
@@ -35,6 +49,7 @@ function AnimationApp() {
           }
         ></AnimateCoin>
       </div>
+      
     </main>
   );
 }
