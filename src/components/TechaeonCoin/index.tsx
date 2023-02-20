@@ -18,15 +18,17 @@ type Props = {
   scale?: number;
   color: ColorFormats.RGB;
   branding: string;
+  imagePath?: string,
 };
 
 const STARTING_POINT = 10;
 const BASE_SIZE = 240;
 
-const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
+const TechaeonCoin = ({ scale = 1, shape, color, branding, imagePath }: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
   const [image] = useImage("https://konvajs.org/assets/lion.png");
+  const [imageWithBase64] = useImage(imagePath ?? '');
   const lengthOfText = "AEONPASS TECHAEON".length * 9;
 
   const startingXPointForText = (260 - lengthOfText) / 2 + 5;
@@ -90,7 +92,9 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
     "," +
     endingXPointForText;
 
-  function loadImage() {}
+  function loadImage() { }
+
+  console.log('imagePath', imagePath)
 
   return (
     <>
@@ -108,6 +112,22 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
             scale={{ x: 0.7, y: 0.7 }}
             fill={palette[900]}
           />
+
+
+          {imagePath ? 
+          // <img style={{position: 'absolute', left:BASE_SIZE * 0.22 + STARTING_POINT, bottom: BASE_SIZE * 0.25 + STARTING_POINT}} width='120' height='120' src={`${imagePath}`} /> 
+          <Image
+            image={imageWithBase64}
+            x={BASE_SIZE * 0.22 + STARTING_POINT}
+            y={BASE_SIZE * 0.25 + STARTING_POINT}
+            // // data={shape.split("Z")[0]}
+            // scale={{ x: 0.7, y: 0.7 }}
+            width={120}
+            height={120}
+          // fill="red"
+          />
+          : 
+          
           <Image
             image={image}
             x={BASE_SIZE * 0.22 + STARTING_POINT}
@@ -116,8 +136,8 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
             // scale={{ x: 0.7, y: 0.7 }}
             width={120}
             height={120}
-            // fill="red"
-          />
+          // fill="red"
+          />}
           <Path
             x={STARTING_POINT}
             y={STARTING_POINT}

@@ -15,9 +15,11 @@
     "konva": "^8.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.1",
     "react-konva": "^18.2.4",
     "react-svg": "^16.1.0",
     "tinycolor2": "^1.6.0",
+    "use-file-picker": "^1.5.2",
     "use-image": "^1.1.0"
   },
   "devDependencies": {
