@@ -15,7 +15,7 @@ function App() {
             shape={Shapes.square}
             color={{ r: 255, g: 194, b: 38 }}
             scale={1}
-            branding={"AEONPASS TECHAEON"}
+            branding={"AEONPASS TECHAEON  AEONPASS TECHAEON  AEONPASS TECHAEON  AEONPASS TECHAEON"}
           />
         </div>
       </div>

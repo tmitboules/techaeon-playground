@@ -2,7 +2,25 @@ import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin, { Shapes } from "./components/TechaeonCoin";
 import AnimateCoin from "./components/AnimateCoin";
 
+import { useState } from "react";
+
 function AnimationApp() {
+  const [coinStatus, setCoin] = useState("");
+  const flipCoin = () => {
+    setCoin("");
+    const flipResult = Math.random();
+
+    setTimeout(function () {
+      if (flipResult <= 0.5) {
+        setCoin("heads");
+        console.log("it is head");
+      } else {
+        setCoin("tails");
+        console.log("it is tails");
+      }
+    }, 100);
+  };
+
   return (
     <main>
       <SiteHeader />
