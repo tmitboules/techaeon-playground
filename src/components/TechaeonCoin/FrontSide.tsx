@@ -25,12 +25,20 @@ const FrontSide = ({
   shape,
   palette,
 }: Props) => {
+  if (image) {
+    image.crossOrigin = "Anonymous";
+  }
 
-  if (image) {    image.crossOrigin = "Anonymous";  }
+  const { frontSideReference } = useTechaeonDownloadProvider();
 
-  const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
   return (
-    <Stage width={size} height={size} scale={{ x: x, y: y }} ref={frontSideReference} >
+    <Stage
+      width={size}
+      height={size}
+      scale={{ x: x, y: y }}
+      //@ts-ignore
+      ref={frontSideReference}
+    >
       <Layer>
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}

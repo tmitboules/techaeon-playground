@@ -26,10 +26,16 @@ const BackSide = ({
   shape,
   palette,
 }: Props) => {
-  const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
+  const { backSideReference } = useTechaeonDownloadProvider();
+
   return (
-    //@ts-ignore
-    <Stage width={size} height={size} scale={{ x: x, y: y }} ref={backSideReference}>
+    <Stage
+      width={size}
+      height={size}
+      scale={{ x: x, y: y }}
+      //@ts-ignore
+      ref={backSideReference}
+    >
       <Layer>
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}
