@@ -1,5 +1,4 @@
 import { Image, Layer, Path, Stage } from "react-konva";
-import { Shapes } from ".";
 import { TechaeonPalette } from "./../../utils/index";
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
   BASE_SIZE: number;
   STARTING_POINT: number;
   textLayer: JSX.Element;
-  shape: Shapes;
+  shape: string;
   palette: TechaeonPalette;
 }
 
@@ -25,6 +24,7 @@ const FrontSide = ({
   shape,
   palette,
 }: Props) => {
+
   return (
     <Stage width={size} height={size} scale={{ x: x, y: y }}>
       <Layer>

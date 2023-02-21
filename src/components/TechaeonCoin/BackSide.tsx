@@ -10,7 +10,7 @@ interface Props {
   BASE_SIZE: number;
   STARTING_POINT: number;
   textLayer: JSX.Element;
-  shape: Shapes;
+  shape: string;
   palette: TechaeonPalette;
 }
 
