@@ -51,8 +51,8 @@ const FrontSide = ({
           image={image}
           // x={BASE_SIZE * 0.22 + STARTING_POINT}
           // y={BASE_SIZE * 0.25 + STARTING_POINT}
-          x={BASE_SIZE / 2 - 120 / 2}
-          y={BASE_SIZE / 2 - 120 / 2}
+          x={BASE_SIZE / 2 - 50}
+          y={BASE_SIZE / 2 - 50}
           width={120}
           height={120}
         />

@@ -35,7 +35,7 @@ const TechaeonCoin = ({
   const palette = generatePalette(color);
   const size = 260 * scale;
   const [image] = useImage(imageUrl);
-  const [logoImage] = useImage("./coin-logo.svg");
+  const [logoImage] = useImage("./coin-logo.png");
 
   let shapePath = "";
 
