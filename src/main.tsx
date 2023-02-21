@@ -7,9 +7,9 @@ import { TechaeonDownloadProvider } from "./provider/techaeonDownloadProvider";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-    {/* <TechaeonDownloadProvider>
+    {/* <App /> */}
+    <TechaeonDownloadProvider>
       <AnimationApp></AnimationApp>
-    </TechaeonDownloadProvider> */}
+    </TechaeonDownloadProvider>
   </React.StrictMode>
 );
