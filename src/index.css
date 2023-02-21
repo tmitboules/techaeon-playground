@@ -72,7 +72,29 @@ body {
   -o-animation: flipTails 3s ease-in-out forwards;
   animation: flipTails 3s ease-in-out forwards;
 }
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-self: 'center';
+  padding: 10px;
 
+}
+.image-container-selected{
+  display: flex;
+  justify-content: center;
+  align-self: 'center';
+  padding: 10px;
+  border-width: 1px;
+}
+.checkbox-container {
+  display: flex;
+  justify-content: flex-end;
+  align-self: 'flex-end';
+  align-items: 'flex-end';
+    border-width: 1px;
+  border-color: 'red';
+
+}
 @keyframes flipHeads {
   0% {
     -webkit-transform: rotateY(0);

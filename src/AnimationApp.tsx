@@ -19,6 +19,27 @@ function AnimationApp() {
           width="300px"
           frontSide={
             <TechaeonCoin
+              shape={Shapes.diamond}
+              color={{ r: 255, g: 194, b: 38 }}
+              scale={1}
+              branding={"AEONPASS TECHAEON"}
+            />
+          }
+          backSide={
+            <TechaeonCoin
+              shape={Shapes.diamond}
+              color={{ r: 100, g: 94, b: 28 }}
+              scale={1}
+              branding={"AEONPASS TECHAEON"}
+            />
+          }
+        ></AnimateCoin>
+
+<AnimateCoin
+          height="300px"
+          width="300px"
+          frontSide={
+            <TechaeonCoin
               shape={Shapes.square}
               color={{ r: 255, g: 194, b: 38 }}
               scale={1}
@@ -34,6 +55,28 @@ function AnimationApp() {
             />
           }
         ></AnimateCoin>
+
+<AnimateCoin
+          height="300px"
+          width="300px"
+          frontSide={
+            <TechaeonCoin
+              shape={Shapes.hexagon}
+              color={{ r: 255, g: 194, b: 38 }}
+              scale={1}
+              branding={"AEONPASS TECHAEON"}
+            />
+          }
+          backSide={
+            <TechaeonCoin
+              shape={Shapes.hexagon}
+              color={{ r: 100, g: 94, b: 28 }}
+              scale={1}
+              branding={"AEONPASS TECHAEON"}
+            />
+          }
+        ></AnimateCoin>
+
       </div>
     </main>
   );
