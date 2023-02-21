@@ -1,7 +1,7 @@
 import tinycolor from "tinycolor2";
 import { ColorFormats } from "tinycolor2";
 
-type TechaeonPalette = {
+export type TechaeonPalette = {
   100: string;
   200: string;
   300: string;

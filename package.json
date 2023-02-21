@@ -11,8 +11,10 @@
   "dependencies": {
     "@imagemarker/use-text-width": "^0.4.4",
     "@legendapp/motion": "^2.2.0",
+    "form-data": "^4.0.0",
     "framer-motion": "^9.0.3",
     "konva": "^8.4.2",
+    "openai": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
