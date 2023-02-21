@@ -1,5 +1,6 @@
 import { Image, Layer, Path, Stage } from "react-konva";
 import { Shapes } from ".";
+import { useTechaeonDownloadProvider } from "../../provider/techaeonDownloadProvider";
 import { TechaeonPalette } from "./../../utils/index";
 
 interface Props {
@@ -25,8 +26,10 @@ const BackSide = ({
   shape,
   palette,
 }: Props) => {
+  const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
   return (
-    <Stage width={size} height={size} scale={{ x: x, y: y }}>
+    //@ts-ignore
+    <Stage width={size} height={size} scale={{ x: x, y: y }} ref={backSideReference}>
       <Layer>
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}

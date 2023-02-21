@@ -80,36 +80,44 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding }: Props) => {
   );
 
   return (
-    <AnimationWrapper
-      height={size}
-      width={size}
-      frontSide={
-        <FrontSide
-          BASE_SIZE={BASE_SIZE}
-          STARTING_POINT={STARTING_POINT}
-          shape={shape}
-          palette={palette}
-          image={image}
-          size={size}
-          x={scale}
-          y={scale}
-          textLayer={textLayer}
-        ></FrontSide>
-      }
-      backSide={
-        <BackSide
-          BASE_SIZE={BASE_SIZE}
-          STARTING_POINT={STARTING_POINT}
-          image={logoImage}
-          size={size}
-          x={scale}
-          y={scale}
-          shape={shape}
-          palette={palette}
-          textLayer={textLayer}
-        ></BackSide>
-      }
-    ></AnimationWrapper>
+    
+    
+      <AnimationWrapper
+        height={size}
+        width={size}
+        frontSide={
+          <FrontSide
+            BASE_SIZE={BASE_SIZE}
+            STARTING_POINT={STARTING_POINT}
+            shape={shape}
+            palette={palette}
+            image={image}
+            size={size}
+            x={scale}
+            y={scale}
+            textLayer={textLayer}
+          ></FrontSide>
+        }
+        backSide={
+          <BackSide
+            BASE_SIZE={BASE_SIZE}
+            STARTING_POINT={STARTING_POINT}
+            image={logoImage}
+            size={size}
+            x={scale}
+            y={scale}
+            shape={shape}
+            palette={palette}
+            textLayer={textLayer}
+          ></BackSide>
+        }
+      ></AnimationWrapper>
+
+
+
+    
+
+
   );
 };
 

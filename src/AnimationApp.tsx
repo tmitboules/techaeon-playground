@@ -1,7 +1,22 @@
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin, { Shapes } from "./components/TechaeonCoin";
+import { TechaeonDownloadProvider, useTechaeonDownloadProvider } from "./provider/techaeonDownloadProvider";
+
+
 
 function AnimationApp() {
+  const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
+
+  const handleExport = () => {
+    //@ts-ignore
+    const uri = frontSideReference.current.toDataURL();
+    downloadImage(uri, 'front.png');
+    //@ts-ignore
+    const uri2 = backSideReference.current.toDataURL();
+    downloadImage(uri2, 'back.png');
+
+  };
+
   return (
     <main>
       <SiteHeader />
@@ -13,12 +28,17 @@ function AnimationApp() {
           justifyContent: "center",
         }}
       >
-        <TechaeonCoin
-          shape={Shapes.square}
-          color={{ r: 255, g: 194, b: 38 }}
-          scale={1}
-          branding={"AEONPASS TECHAEON"}
-        />
+        
+        <button onClick={handleExport}>Download Image</button>
+          <TechaeonCoin
+            shape={Shapes.square}
+            color={{ r: 255, g: 194, b: 38 }}
+            scale={1}
+            branding={"AEONPASS TECHAEON"}
+          />
+
+       
+
       </div>
     </main>
   );
