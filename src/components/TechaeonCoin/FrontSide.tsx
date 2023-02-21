@@ -1,5 +1,4 @@
 import { Image, Layer, Path, Stage } from "react-konva";
-import { Shapes } from ".";
 import { useTechaeonDownloadProvider } from "../../provider/techaeonDownloadProvider";
 import { TechaeonPalette } from "./../../utils/index";
 
@@ -11,7 +10,7 @@ interface Props {
   BASE_SIZE: number;
   STARTING_POINT: number;
   textLayer: JSX.Element;
-  shape: Shapes;
+  shape: string;
   palette: TechaeonPalette;
 }
 
@@ -26,12 +25,20 @@ const FrontSide = ({
   shape,
   palette,
 }: Props) => {
+  if (image) {
+    image.crossOrigin = "Anonymous";
+  }
 
-  if (image) {    image.crossOrigin = "Anonymous";  }
+  const { frontSideReference } = useTechaeonDownloadProvider();
 
-  const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
   return (
-    <Stage width={size} height={size} scale={{ x: x, y: y }} ref={frontSideReference} >
+    <Stage
+      width={size}
+      height={size}
+      scale={{ x: x, y: y }}
+      //@ts-ignore
+      ref={frontSideReference}
+    >
       <Layer>
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}
@@ -44,8 +51,8 @@ const FrontSide = ({
           image={image}
           // x={BASE_SIZE * 0.22 + STARTING_POINT}
           // y={BASE_SIZE * 0.25 + STARTING_POINT}
-          x={BASE_SIZE / 2 - 120 / 2}
-          y={BASE_SIZE / 2 - 120 / 2}
+          x={BASE_SIZE / 2 - 50}
+          y={BASE_SIZE / 2 - 50}
           width={120}
           height={120}
         />
