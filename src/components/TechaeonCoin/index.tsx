@@ -5,10 +5,9 @@ import FrontSide from "./FrontSide";
 import BackSide from "./BackSide";
 import { Layer, TextPath } from "react-konva";
 import AnimationWrapper from "./AnimationWrapper";
-import { ShapeValues } from "../../hooks/useTechaeonParams";
 
 type Props = {
-  shape: ShapeValues;
+  shape: string;
   scale?: number;
   color: ColorFormats.RGB;
   branding: string;

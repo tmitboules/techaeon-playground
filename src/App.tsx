@@ -1,19 +1,47 @@
+import ColorButton from "./components/ColorButtons";
+import ShapeButton from "./components/ShapeButtons";
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin from "./components/TechaeonCoin";
-import useTechaeonParams from "./hooks/useTechaeonParams";
+import useTechaeonParams, {
+  ShapeKeys,
+  techaeonColors,
+  techaeonShapes,
+} from "./hooks/useTechaeonParams";
 
 function App() {
-  const { shape } = useTechaeonParams();
+  const { shape, setShape, color, setColor } = useTechaeonParams();
 
   return (
     <main>
       <SiteHeader />
       <div className="flex">
-        <div className="flex-1 h-10 bg-blue-400"></div>
+        <section className="flex-1">
+          {/* shape buttons */}
+          <div className="flex gap-2">
+            {Object.entries(techaeonShapes).map(([name, path]) => (
+              <ShapeButton
+                path={path}
+                name={name}
+                clickHandler={() => setShape(techaeonShapes[name as ShapeKeys])}
+              />
+            ))}
+          </div>
+          {/* color buttons */}
+          <div className="flex gap-2 flex-1 mt-10">
+            {Object.entries(techaeonColors).map(([name, color]) => (
+              <ColorButton
+                name={name}
+                color={color}
+                clickHandler={() => setColor(color)}
+              />
+            ))}
+          </div>
+        </section>
+
         <div className="w-full flex-1 flex align-middle justify-center">
           <TechaeonCoin
             shape={shape}
-            color={{ r: 63, g: 63, b: 63 }}
+            color={color}
             scale={1}
             branding={"AEONPASS TECHAEON"}
             imageUrl="./lion-logo.png"

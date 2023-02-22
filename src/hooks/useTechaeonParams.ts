@@ -2,9 +2,9 @@ import { useState } from "react";
 import { ColorFormats } from "tinycolor2";
 
 export const techaeonColors = {
-  Silver: { r: 218, g: 184, b: 95 },
-  Bronze: { r: 151, g: 142, b: 133 },
-  Gold: { r: 184, g: 153, b: 108 },
+  Gold: { r: 218, g: 184, b: 95 },
+  Silver: { r: 151, g: 142, b: 133 },
+  Bronze: { r: 184, g: 153, b: 108 },
 } as const;
 
 export const techaeonShapes = {
@@ -17,14 +17,10 @@ export const techaeonShapes = {
 };
 
 export type ShapeKeys = keyof typeof techaeonShapes;
-export type ColorKeys = keyof typeof techaeonColors;
-
-export type ShapeValues = typeof techaeonShapes[ShapeKeys];
-export type ColorValues = typeof techaeonColors[ColorKeys];
 
 export default function useTechaeonParams() {
-  const [shape, setShape] = useState<ShapeValues>(techaeonShapes.hexagon);
-  const [color, setColor] = useState<ColorValues>(techaeonColors.Silver);
+  const [shape, setShape] = useState<string>(techaeonShapes.hexagon);
+  const [color, setColor] = useState<ColorFormats.RGB>(techaeonColors.Silver);
   const [img, setImg] = useState("");
 
   return {

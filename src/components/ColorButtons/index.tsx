@@ -1,12 +1,13 @@
 import React from "react";
+import { ColorFormats } from "tinycolor2";
 
 type Props = {
-  path: string;
+  color: ColorFormats.RGB;
   name: string;
   clickHandler: () => void;
 };
 
-const ShapeButton = ({ path, name, clickHandler }: Props) => {
+const ColorButton = ({ color, name, clickHandler }: Props) => {
   //please generate button look based on path
 
   return (
@@ -19,4 +20,4 @@ const ShapeButton = ({ path, name, clickHandler }: Props) => {
   );
 };
 
-export default ShapeButton;
+export default ColorButton;
