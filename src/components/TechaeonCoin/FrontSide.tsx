@@ -1,3 +1,5 @@
+import Konva from "konva";
+import React from "react";
 import { Image, Layer, Path, Stage } from "react-konva";
 import { Shapes } from ".";
 import { useTechaeonDownloadProvider } from "../../provider/techaeonDownloadProvider";
@@ -27,7 +29,11 @@ const FrontSide = ({
   palette,
 }: Props) => {
 
-  if (image) {    image.crossOrigin = "Anonymous";  }
+
+  if (image) {
+    image.crossOrigin = "Anonymous";
+
+  }
 
   const { frontSideReference, backSideReference, downloadImage } = useTechaeonDownloadProvider()
   return (
@@ -39,7 +45,31 @@ const FrontSide = ({
           data={shape.split("Z")[0]}
           scale={{ x: 0.7, y: 0.7 }}
           fill={palette[900]}
+
         />
+
+        <Path
+          x={BASE_SIZE * 0.20 + STARTING_POINT}
+          y={BASE_SIZE * 0.20 + STARTING_POINT}
+          data={shape.split("Z")[0]}
+          scale={{ x: 0.6, y: 0.6 }}
+          fill={palette[900]}
+          // fillLinearGradientColorStops={[
+          //   0,
+          //   palette[100],
+          //   0.5,
+          //   palette[500],
+          //   1,
+          //   palette[900],
+          // ]}
+          shadowColor='black' 
+          shadowBlur={460} 
+          shadowOpacity={0.7}
+          opacity={0.3}
+          
+          
+        />
+
         <Image
           image={image}
           // x={BASE_SIZE * 0.22 + STARTING_POINT}
@@ -48,6 +78,7 @@ const FrontSide = ({
           y={BASE_SIZE / 2 - 120 / 2}
           width={120}
           height={120}
+
         />
         <Path
           x={STARTING_POINT}

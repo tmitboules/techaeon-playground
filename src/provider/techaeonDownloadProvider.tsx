@@ -3,9 +3,11 @@ import React, { createContext, useContext } from "react";
 import techaeonDownloadHooks, { TechaeonDownloadReturnType } from "../hooks/techaeonDownloadHooks";
 
 const initialContext: TechaeonDownloadReturnType = {
+  //@ts-ignore
   frontSideReference: undefined,
+  //@ts-ignore
   backSideReference: undefined,
-  downloadImage: (point: number) => {}
+  downloadImage: (uri: any, name: any) => {}
 };
 
 export const techaeonDownloadContext =
