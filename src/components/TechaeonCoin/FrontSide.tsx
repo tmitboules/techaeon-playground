@@ -25,6 +25,9 @@ const FrontSide = ({
   shape,
   palette,
 }: Props) => {
+  console.log('Image', image?.width)
+  const imageWidth = 200
+  const imageHeight = 200
   return (
     <Stage width={size} height={size} scale={{ x: x, y: y }}>
       <Layer>
@@ -35,15 +38,28 @@ const FrontSide = ({
           scale={{ x: 0.7, y: 0.7 }}
           fill={palette[900]}
         />
+      
         <Image
           image={image}
+         
           // x={BASE_SIZE * 0.22 + STARTING_POINT}
           // y={BASE_SIZE * 0.25 + STARTING_POINT}
-          x={BASE_SIZE / 2 - 120 / 2}
-          y={BASE_SIZE / 2 - 120 / 2}
-          width={120}
-          height={120}
+          x={BASE_SIZE / 2 - imageWidth / 2}
+          y={BASE_SIZE / 2 - imageHeight / 2}
+          width={imageWidth}
+          cornerRadius={imageWidth/2}
+          height={imageHeight}
         />
+          <Path
+          x={BASE_SIZE * 0.15 + STARTING_POINT}
+          y={BASE_SIZE * 0.15 + STARTING_POINT}
+          data={shape.split("Z")[0]}
+          scale={{ x: 0.7, y: 0.7 }}
+          fill={palette[900]}
+          opacity={0.5}
+        />
+
+
         <Path
           x={STARTING_POINT}
           y={STARTING_POINT}
@@ -75,6 +91,8 @@ const FrontSide = ({
             palette[900],
           ]}
         />
+
+
         <Path
           x={BASE_SIZE * 0.03 + STARTING_POINT}
           y={BASE_SIZE * 0.03 + STARTING_POINT}

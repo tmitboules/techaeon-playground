@@ -25,8 +25,9 @@ function AnimationApp() {
   const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
     readAs: 'DataURL',
     accept: 'image/*',
-    multiple: true,
-    limitFilesConfig: { max: 1 },
+    
+    multiple: false,
+   
     imageSizeRestrictions: {
       maxHeight: maxSize, // in pixels
       maxWidth: maxSize,
@@ -40,7 +41,7 @@ function AnimationApp() {
     const response = await openai.createImage({
       prompt: prompt,
       n: 10,
-      size: "256x256",
+      size: "512x512",
     });
 
     console.log("Data", response.data.data)
