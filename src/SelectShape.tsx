@@ -6,12 +6,25 @@ import CustomSelectionButton from "./customSelectionButton";
 import { Shape, shapes } from "konva/lib/Shape";
 import CustomColorSelection from "./CustomColorSelection";
 import { ColorFormats } from "tinycolor2";
+
+
 function SelectShape() {
   const [shapeName, setshape] = useState<Shapes>(Shapes.square);
+  const arrOfshapes = [
+    { image: '/src/assets/square.png', name: Shapes.square},
+    { image: '/src/assets/dimond.png', name: Shapes.diamond},
+    { image: '/src/assets/hexagon.png', name:Shapes.hexagon}
+  ];
+  const arrOfColors = [
+    { color: '#978E85', colorCode: {r:151,g:142,b:133}},
+    { color: '#DAB85F', colorCode:  {r:218,g:184,b:95}},
+    { color: '#B8996C', colorCode: {r:184,g:153,b:108}}
+  ];
+
   const [coinColor, setCoinColor] = useState<ColorFormats.RGB>({
-    r: 231,
-    g: 133,
-    b: 117,
+    r: 218,
+    g: 184,
+    b: 95,
   });
 
   return (
@@ -24,21 +37,10 @@ function SelectShape() {
           justifyContent: "center",
         }}
       >
+
         <CustomSelectionButton
-          imgName="/src/assets/square.png"
-          name="square"
-          clickFunction={(name) => setshape(Shapes.square)}
-        ></CustomSelectionButton>
-        <CustomSelectionButton
-          imgName="/src/assets/dimond.png"
-          name="dimond"
-          clickFunction={(name) => setshape(Shapes.diamond)}
-        ></CustomSelectionButton>
-        <CustomSelectionButton
-          imgName="/src/assets/hexagon.png"
-          name="hexagon"
-          clickFunction={(name) => setshape(Shapes.hexagon)}
-        ></CustomSelectionButton>
+          clickFunction={(name) => setshape(name)}
+          arrOfDict={arrOfshapes}></CustomSelectionButton>
       </div>
 
       <div
@@ -63,18 +65,11 @@ function SelectShape() {
           justifyContent: "center",
         }}
       >
-        <CustomColorSelection
-          name="#DAB85F"
-          clickFunction={(name) => setCoinColor({ r: 218, g: 184, b: 95 })}
-        ></CustomColorSelection>
-        <CustomColorSelection
-          name="#978E85"
-          clickFunction={(name) => setCoinColor({ r: 151, g: 142, b: 133 })}
-        ></CustomColorSelection>
-                <CustomColorSelection
-          name="#B8996C"
-          clickFunction={(name) => setCoinColor({ r: 184, g: 153, b: 108 })}
-        ></CustomColorSelection>
+
+
+        <CustomColorSelection 
+          clickFunction={(color) => setCoinColor(color)}
+          arrOfDict={arrOfColors}></CustomColorSelection>
 
       </div>
     </main>

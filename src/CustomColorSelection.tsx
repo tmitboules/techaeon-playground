@@ -3,33 +3,77 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { ColorFormats } from "tinycolor2";
+import { Avatar, Checkbox, FormLabel, Radio, radioClasses, Sheet } from "@mui/joy";
+import {RadioGroup} from "@mui/joy";
 
-type Props = {
-    name: string | undefined;
-    clickFunction: (name:String) => void;
-    
-
+type PropsTest = {
+    clickFunction: (name:ColorFormats.RGB) => void;
+    arrOfDict:{color:string, colorCode:ColorFormats.RGB}[];
   };
 
- function CustomColorSelection({name,clickFunction }: Props) {
+ function CustomColorSelection(propName : PropsTest) {
 
-    const handleInputChange = (name: any) => {
-        clickFunction(name ?? "")
+  const {clickFunction, arrOfDict} = propName;
+
+    const handleInputChange = (name: ColorFormats.RGB) => {
+        clickFunction(name)
       };
     return (
-    <div style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-           <view  name={name} style={{backgroundColor: name ,margin:'10px', borderRadius:10, height:"80px",width:'150px', padding:'10px'}} onClick={e => handleInputChange(name)}>
-            <input type="radio" id="logo1" name="logo1" value="logo1" />
-            </view>
-    </div>
+      <RadioGroup
+        aria-label="platform"
+        defaultValue="color"
+        overlay
+        name="platform"
+        sx={{
+          flexDirection: 'row',
+          gap: 2,
+          [`& .${radioClasses.checked}`]: {
+            [`& .${radioClasses.action}`]: {
+              inset: -1,
+              border: '4px solid',
+              borderColor: '#05ADA0',
+            },
+          },
+          [`& .${radioClasses.radio}`]: {
+            display: 'contents',
+            '& > svg': {
+              zIndex: 2,
+              position: 'absolute',
+              top: '-8px',
+              right: '-8px',
+              bgcolor: 'background.body',
+              borderRadius: '50%',
+            },
+          },
+        }}
+      >
+        {arrOfDict.map((value) => (
+          <Sheet
+            key={value.color}
+            sx={{
+              borderRadius: 'md',
+              bgcolor: value.color ?? "",
+              boxShadow: 'sm',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1.5,
+              p: 2,
+              width: 110,
+              height:150
+            }}
+          >
+           <Radio id={value.color} value={value.color} checkedIcon={<img style={{marginLeft:'55px'}} src="/src/assets/icoChecked.png"></img>
+} onChange={e => handleInputChange(value.colorCode)}/>
+          </Sheet>
+        ))} 
+      </RadioGroup>
     );
+  
  }  
 
 export default CustomColorSelection;
 
 
   
+
