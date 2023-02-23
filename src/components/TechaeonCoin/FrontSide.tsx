@@ -48,7 +48,40 @@ const FrontSide = ({
             y={BASE_SIZE * 0.15 + STARTING_POINT}
             data={shape.split("Z")[0]}
             scale={{ x: 0.7, y: 0.7 }}
-            fill={palette[900]}
+            shadowBlur={6}
+            shadowColor='white'
+            shadowOpacity={0.45}
+            shadowOffsetX={0}
+            shadowOffsetY={-5}
+
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
+            fillLinearGradientColorStops={[
+              1,
+              palette[900],
+              1,
+              palette[200],
+              0.6,
+              palette[100],
+            ]}
+  
+          //  fill={palette[900]}
+          />
+                    <Path
+            x={BASE_SIZE * 0.21 + STARTING_POINT}
+            y={BASE_SIZE * 0.21 + STARTING_POINT}
+            data={shape.split("Z")[0]}
+            scale={{ x: 0.58, y: 0.58 }}
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
+            fillLinearGradientColorStops={[
+              0.8,
+              palette[300],
+              1,
+              palette[300],
+             0.2,
+              palette[300],
+            ]}
           />
         </Layer>
       </Stage>
@@ -70,6 +103,7 @@ const FrontSide = ({
           data={shape.split("Z")[0]}
           scale={{ x: 0.7, y: 0.7 }}
           fill={palette[900]}
+          
         />
         <Image
           image={image}

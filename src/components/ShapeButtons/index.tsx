@@ -10,7 +10,7 @@ const ShapeButton = ({ path, name, clickHandler }: Props) => {
   //please generate button look based on path
 
   return (
-    <div
+    <div 
       className=" flex-1 p-10 border-2 rounded-md cursor-pointer"
       onClick={clickHandler}
     >
@@ -18,8 +18,8 @@ const ShapeButton = ({ path, name, clickHandler }: Props) => {
 
       <TechaeonCoin
         shape={path}
-        color={{ r: 150, g: 150, b: 150 }}
-        scale={1}
+        color={{ r: 70, g: 70, b: 70 }}
+        scale={0.5}
         withoutAnimation={true}
         onlyShape={true}
       />
