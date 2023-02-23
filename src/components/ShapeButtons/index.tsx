@@ -1,4 +1,4 @@
-import React from "react";
+import TechaeonCoin from "../TechaeonCoin";
 
 type Props = {
   path: string;
@@ -14,7 +14,15 @@ const ShapeButton = ({ path, name, clickHandler }: Props) => {
       className=" flex-1 p-10 border-2 rounded-md cursor-pointer"
       onClick={clickHandler}
     >
-      {name}
+      {/* {name} */}
+
+      <TechaeonCoin
+        shape={path}
+        color={{ r: 150, g: 150, b: 150 }}
+        scale={1}
+        withoutAnimation={true}
+        onlyShape={true}
+      />
     </div>
   );
 };

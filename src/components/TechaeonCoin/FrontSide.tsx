@@ -12,6 +12,7 @@ interface Props {
   textLayer: JSX.Element;
   shape: string;
   palette: TechaeonPalette;
+  onlyShape?: boolean;
 }
 
 const FrontSide = ({
@@ -24,12 +25,35 @@ const FrontSide = ({
   textLayer,
   shape,
   palette,
+  onlyShape,
 }: Props) => {
   if (image) {
     image.crossOrigin = "Anonymous";
   }
 
   const { frontSideReference } = useTechaeonDownloadProvider();
+
+  if (onlyShape) {
+    return (
+      <Stage
+        width={size}
+        height={size}
+        scale={{ x: x, y: y }}
+        //@ts-ignore
+        ref={frontSideReference}
+      >
+        <Layer>
+          <Path
+            x={BASE_SIZE * 0.15 + STARTING_POINT}
+            y={BASE_SIZE * 0.15 + STARTING_POINT}
+            data={shape.split("Z")[0]}
+            scale={{ x: 0.7, y: 0.7 }}
+            fill={palette[900]}
+          />
+        </Layer>
+      </Stage>
+    );
+  }
 
   return (
     <Stage
