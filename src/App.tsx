@@ -17,7 +17,7 @@ function App() {
   return (
     <main>
       <SiteHeader />
-      <div className="flex">
+      <div style={{marginLeft:20}} className="flex">
         <section className="flex-1">
           {/* shape buttons */}
           <div className="flex gap-2">
