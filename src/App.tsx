@@ -2,6 +2,8 @@ import ColorButton from "./components/ColorButtons";
 import ShapeButton from "./components/ShapeButtons";
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin from "./components/TechaeonCoin";
+import { useLottie } from "lottie-react";
+import coin from "./coin.json";
 import useTechaeonParams, {
   ShapeKeys,
   techaeonColors,
@@ -10,6 +12,7 @@ import useTechaeonParams, {
 
 function App() {
   const { shape, setShape, color, setColor } = useTechaeonParams();
+  
 
   return (
     <main>
@@ -47,7 +50,8 @@ function App() {
             imageUrl="./lion-logo.png"
             // imageUrl="https://konvajs.org/assets/lion.png"
           />
-          <button
+          {/* <>{View}</> */}
+          {/* <button
             type="button"
             className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
@@ -58,7 +62,7 @@ function App() {
             className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Download
-          </button>
+          </button> */}
         </div>
       </div>
 

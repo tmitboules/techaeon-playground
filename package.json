@@ -13,6 +13,7 @@
     "@legendapp/motion": "^2.2.0",
     "framer-motion": "^9.0.3",
     "konva": "^8.4.2",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-konva": "^18.2.4",

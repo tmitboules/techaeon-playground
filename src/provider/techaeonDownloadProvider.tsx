@@ -5,7 +5,7 @@ import techaeonDownloadHooks, { TechaeonDownloadReturnType } from "../hooks/tech
 const initialContext: TechaeonDownloadReturnType = {
   frontSideReference: undefined,
   backSideReference: undefined,
-  downloadImage: (point: number) => {}
+  downloadImage: (uri: any, name: any) => {}
 };
 
 export const techaeonDownloadContext =
