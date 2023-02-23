@@ -41,7 +41,7 @@ function AnimationApp() {
     const response = await openai.createImage({
       prompt: prompt,
       n: 10,
-      size: "512x512",
+      size: "256x256",
     });
 
     console.log("Data", response.data.data)
