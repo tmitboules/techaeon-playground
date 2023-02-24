@@ -22,27 +22,30 @@ function App() {
           {/* shape buttons */}
           <div className="flex gap-2">
             {Object.entries(techaeonShapes).map(([name, path]) => (
-              <ShapeButton
+              <ShapeButton 
                 path={path}
                 name={name}
                 clickHandler={() => setShape(techaeonShapes[name as ShapeKeys])}
+                selected={shape == path ? true : false}
               />
             ))}
           </div>
           {/* color buttons */}
           <div className="flex gap-2 flex-1 mt-10">
-            {Object.entries(techaeonColors).map(([name, color]) => (
+            {Object.entries(techaeonColors).map(([name, colorr]) => (
               <ColorButton
                 name={name}
-                color={color}
-                clickHandler={() => setColor(color)}
+                color={colorr}
+                clickHandler={() => setColor(colorr)}
+                selected={color == colorr ?true : false}
               />
-            ))}
+            )
+            )}     
           </div>
         </section>
 
         <div className="w-full flex-1 flex flex-col justify-center items-center gap-4">
-          <TechaeonCoin
+          <TechaeonCoin 
             shape={shape}
             color={color}
             scale={1}
