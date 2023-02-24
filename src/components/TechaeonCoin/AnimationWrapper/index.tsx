@@ -29,6 +29,7 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
     setCoinSide(coinSide === "front" ? "back" : "front");
   };
   const handleAnimationButtonClick = () => {
+
     play()
     setIsAnimationVisible(true);
     setTimeout(() => {
@@ -54,6 +55,13 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
   return (
     <div>
       <div
+        style={{
+          height: height,
+          width: width,
+          display: isAnimationVisible ? 'inline-block' : 'none'
+        }}>{View}</div>
+
+      {!isAnimationVisible && <div
         className={`coin ${coinSide}`}
         onClick={flipCoin}
         style={{
@@ -61,18 +69,14 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
           width: width,
         }}
       >
-        <div>{View}</div>
-        {
-          isAnimationVisible && <div>{View}</div>
-        }
-        {
-          !isAnimationVisible && <>
-            <div className="front-side">{frontSide}</div>
-            <div className="back-side">{backSide}</div></>
-        }
+
+          <div className="front-side">{frontSide}</div>
+          <div className="back-side">{backSide}</div>
+
 
 
       </div>
+      }
       <div className="mb-4 flex justify-center items-center">
         <button
           onClick={handleAnimationButtonClick}
