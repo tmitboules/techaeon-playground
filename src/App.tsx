@@ -2,8 +2,6 @@ import ColorButton from "./components/ColorButtons";
 import ShapeButton from "./components/ShapeButtons";
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin from "./components/TechaeonCoin";
-import { useLottie } from "lottie-react";
-import coin from "./coin.json";
 import useTechaeonParams, {
   ShapeKeys,
   techaeonColors,
@@ -12,17 +10,17 @@ import useTechaeonParams, {
 
 function App() {
   const { shape, setShape, color, setColor } = useTechaeonParams();
-  
 
   return (
     <main>
       <SiteHeader />
-      <div style={{marginLeft:20}} className="flex">
+      <div style={{ marginLeft: 20 }} className="flex">
         <section className="flex-1">
           {/* shape buttons */}
           <div className="flex gap-2">
             {Object.entries(techaeonShapes).map(([name, path]) => (
-              <ShapeButton 
+              <ShapeButton
+                key={name}
                 path={path}
                 name={name}
                 clickHandler={() => setShape(techaeonShapes[name as ShapeKeys])}
@@ -34,18 +32,18 @@ function App() {
           <div className="flex gap-2 flex-1 mt-10">
             {Object.entries(techaeonColors).map(([name, colorr]) => (
               <ColorButton
+                key={name}
                 name={name}
                 color={colorr}
                 clickHandler={() => setColor(colorr)}
-                selected={color == colorr ?true : false}
+                selected={color == colorr ? true : false}
               />
-            )
-            )}     
+            ))}
           </div>
         </section>
 
         <div className="w-full flex-1 flex flex-col justify-center items-center gap-4">
-          <TechaeonCoin 
+          <TechaeonCoin
             shape={shape}
             color={color}
             scale={1}

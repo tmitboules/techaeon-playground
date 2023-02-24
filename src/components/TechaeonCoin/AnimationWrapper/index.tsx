@@ -16,27 +16,49 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
   const options = {
     animationData: edited,
     loop: false,
-    autoplay: false
+    autoplay: false,
   };
   const { View, play, stop } = useLottie(options);
 
   const { frontSideReference, backSideReference, downloadImage } =
     useTechaeonDownloadProvider();
+
   const [coinSide, setCoinSide] = useState("");
+  const [coinShrink, setCoinShrink] = useState("");
+
   const [isAnimationVisible, setIsAnimationVisible] = React.useState(false);
 
   const flipCoin = () => {
     setCoinSide(coinSide === "front" ? "back" : "front");
   };
   const handleAnimationButtonClick = () => {
+    if (coinSide === "front") {
+      flipCoin();
+      setTimeout(() => {
+        setCoinShrink("shrink");
+        playAnimation();
+      }, 1000);
+    } else {
+      setCoinShrink("shrink");
+      playAnimation();
+    }
+  };
 
-    play()
-    setIsAnimationVisible(true);
+  const playAnimation = () => {
+    setCoinSide("");
     setTimeout(() => {
-      stop()
-      setIsAnimationVisible(false);
-    }, 6000);
-  }
+      play();
+      setIsAnimationVisible(true);
+      setTimeout(() => {
+        stop();
+        setCoinShrink("shrink-out");
+        setIsAnimationVisible(false);
+        setTimeout(() => {
+          setCoinShrink("");
+        }, 1000);
+      }, 6000);
+    }, 750);
+  };
 
   const handleDownloadButtonClick = () => {
     //@ts-ignore
@@ -48,9 +70,7 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
       const uri2 = backSideReference.current.toDataURL();
       downloadImage(uri2, "back.png");
     }, 500);
-
-
-  }
+  };
 
   return (
     <div>
@@ -58,25 +78,25 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
         style={{
           height: height,
           width: width,
-          display: isAnimationVisible ? 'inline-block' : 'none'
-        }}>{View}</div>
-
-      {!isAnimationVisible && <div
-        className={`coin ${coinSide}`}
-        onClick={flipCoin}
-        style={{
-          height: height,
-          width: width,
+          display: isAnimationVisible ? "inline-block" : "none",
         }}
       >
+        {View}
+      </div>
 
+      {!isAnimationVisible && (
+        <div
+          className={`coin ${coinSide} ${coinShrink}`}
+          onClick={flipCoin}
+          style={{
+            height: height,
+            width: width,
+          }}
+        >
           <div className="front-side">{frontSide}</div>
           <div className="back-side">{backSide}</div>
-
-
-
-      </div>
-      }
+        </div>
+      )}
       <div className="mb-4 flex justify-center items-center">
         <button
           onClick={handleAnimationButtonClick}
@@ -85,7 +105,6 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
         >
           Animate
         </button>
-
       </div>
 
       <div className="mb-4 flex justify-center items-center">
@@ -96,9 +115,7 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
         >
           Download
         </button>
-
       </div>
-
     </div>
   );
 }
