@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@imagemarker/use-text-width": "^0.4.4",
     "@legendapp/motion": "^2.2.0",
+    "@mui/material": "^5.11.10",
     "form-data": "^4.0.0",
     "framer-motion": "^9.0.3",
     "konva": "^8.4.2",

@@ -3,80 +3,91 @@ import { generatePalette } from "../../utils";
 import useImage from "use-image";
 import FrontSide from "./FrontSide";
 import BackSide from "./BackSide";
-import { Layer, Path, TextPath } from "react-konva";
+import { Layer, TextPath } from "react-konva";
 import AnimationWrapper from "./AnimationWrapper";
-import React from "react";
-
-export enum Shapes {
-  //square = "M 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Z M 200 120 Q 200 200 120 200 Q 40 200 40 120 Q 40 40 120 40 Q 200 40 200 120 Z",
-  square = "M 120 240 Q 240 240 240 120 Q 240 0 120 0 Q 0 0 0 120 Q 0 240 120 240 Z M 120 200 Q 40 200 40 120 Q 40 40 120 40 Q 200 40 200 120 Q 200 200 120 200 Z",
-  // square = "M 0 120 Q 0 240 120 240 Q 240 240 240 120 Q 240 0 120 0 Q -0 0 0 120 Z M 40 120 Q 40 40 120 40 Q 200 40 200 120 Q 200 200 120 200 Q 40 200 40 120 Z",
-  // square = "M 120 0 Q -0 0 0 120 Q 0 240 120 240 Q 240 240 240 120 Q 240 -0 120 0 Z M 120 40 Q 200 40 200 120 Q 200 200 120 200 Q 40 200 40 120 Q 40 40 120 40 Z",
-  diamond = "M 200 200 Q 280 120 200 40 Q 120 -40 40 40 Q -40 120 40 200 Q 120 280 200 200 Z M 170 170 Q 120 220 70 170 Q 20 120 70 70 Q 120 20 170 70 Q 220 120 170 170 Z",
-}
-
-//layout component
 
 type Props = {
-  shape: Shapes;
+  shape: string;
   scale?: number;
   color: ColorFormats.RGB;
   branding: string;
-  imagePath?: string,
+  imageUrl: string;
+  isCustomImage: boolean;
 };
 
 const STARTING_POINT = 10;
 const BASE_SIZE = 240;
 
-const TechaeonCoin = ({ scale = 1, shape, color, branding, imagePath }: Props) => {
+const TechaeonCoin = ({
+  scale = 1,
+  shape,
+  color,
+  branding,
+  imageUrl,
+  isCustomImage
+}: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
-  const [image] = imagePath ? useImage(imagePath) : useImage("https://konvajs.org/assets/lion.png");
-  const [logoImage] = useImage("./coin-logo.svg");
+  const [image] = useImage(imageUrl);
+  const [logoImage] = useImage("./coin-logo.png");
 
-  let textToDisplay = "";
+  let shapePath = "";
 
-  if (branding) {
-    const sides = 4;
+  if (shape.split("Z").length > 0) {
+    shapePath = `${shape.split("Z")[0]} Z`.trim();
+  }
 
-    for (let i = 0; i < sides; i++) {
-      textToDisplay = `${textToDisplay}   ${branding}`;
-    }
+  if (shape.split("Z").length > 1) {
+    shapePath = `${shapePath} ${shape.split("Z")[1]} Z`.trim();
+  }
+
+  let textPath = "";
+  let textSidePaths: string[] = [];
+
+  if (shape.split("Z").length > 2) {
+    textPath = shape.split("Z")[2].trim();
+  }
+
+  if (textPath) {
+    const saparator = "C";
+    const textPathPoints = textPath.split(saparator);
+
+    textPathPoints.forEach((e, i) => {
+      if (e.indexOf("M") === -1 && i > 0) {
+        const prevSidePoint = textPathPoints[i - 1].trim().split(" ");
+
+        let textSidePath = "";
+        if (prevSidePoint.length > 2) {
+          textSidePath = `M ${prevSidePoint[prevSidePoint.length - 2]} ${
+            prevSidePoint[prevSidePoint.length - 1]
+          }`;
+        }
+
+        textSidePath = `${textSidePath} ${saparator} ${e.trim()}`;
+
+        textSidePaths.push(textSidePath);
+      }
+    });
   }
 
   const textLayer = (
     <Layer>
-      <TextPath
-        data={shape.split("Z")[1]}
-        fill={palette[900]}
-        fontSize={11}
-        fontStyle={"900"}
-        fontFamily={"Cinzel"}
-        text={textToDisplay}
-        align={"center"}
-        x={STARTING_POINT * -1.3}
-        y={STARTING_POINT * -1.3}
-        scale={{ x: 1.2, y: 1.2 }}
-      ></TextPath>
-
-      {/* {[...Array(4)].map((e, i) => {
-        const data = shape.split("Z")[1].split("Q")[i];
-        return (
-          <TextPath
-            key={i}
-            data={data}
-            fill={palette[900]}
-            fontSize={9}
-            fontStyle={"900"}
-            fontFamily={"Cinzel"}
-            text={branding}
-            align={"center"}
-            x={STARTING_POINT * -1.3}
-            y={STARTING_POINT * -1.3}
-            scale={{ x: 1.2, y: 1.2 }}
-          ></TextPath>
-        );
-      })} */}
+      {textSidePaths.map((pathData) => (
+        <TextPath
+          key={pathData}
+          data={pathData}
+          fill={palette[900]}
+          fontSize={10}
+          fontStyle={"900"}
+          fontFamily={"Cinzel"}
+          text={branding}
+          align={"center"}
+          x={STARTING_POINT}
+          y={STARTING_POINT}
+          scale={{ x: 1, y: 1 }}
+          letterSpacing={0.4}
+        ></TextPath>
+      ))}
     </Layer>
   );
 
@@ -88,12 +99,13 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding, imagePath }: Props) =
         <FrontSide
           BASE_SIZE={BASE_SIZE}
           STARTING_POINT={STARTING_POINT}
-          shape={shape}
+          shape={shapePath}
           palette={palette}
           image={image}
           size={size}
           x={scale}
           y={scale}
+          isCustomImage={isCustomImage}
           textLayer={textLayer}
         ></FrontSide>
       }
@@ -105,7 +117,7 @@ const TechaeonCoin = ({ scale = 1, shape, color, branding, imagePath }: Props) =
           size={size}
           x={scale}
           y={scale}
-          shape={shape}
+          shape={shapePath}
           palette={palette}
           textLayer={textLayer}
         ></BackSide>

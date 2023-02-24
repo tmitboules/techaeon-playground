@@ -10,8 +10,6 @@ const configuration = new Configuration({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 })
 
-
-
 function AnimationApp() {
   const openai = new OpenAIApi(configuration);
   const [prompt, setPrompt] = useState('')
@@ -67,12 +65,13 @@ function AnimationApp() {
           justifyContent: "center",
         }}
       >
+        <button onClick={handleExport}>Download Image</button>
         <TechaeonCoin
           shape={Shapes.square}
           color={{ r: 255, g: 194, b: 38 }}
           scale={1}
           branding={"AEONPASS TECHAEON"}
-          imagePath={selectedImage}
+          imageUrl="https://konvajs.org/assets/lion.png"
         />
       </div>
       <button onClick={openFileSelector}>from gallery</button>

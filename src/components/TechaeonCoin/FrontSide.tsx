@@ -1,5 +1,5 @@
 import { Image, Layer, Path, Stage } from "react-konva";
-import { Shapes } from ".";
+import { useTechaeonDownloadProvider } from "../../provider/techaeonDownloadProvider";
 import { TechaeonPalette } from "./../../utils/index";
 
 interface Props {
@@ -10,8 +10,9 @@ interface Props {
   BASE_SIZE: number;
   STARTING_POINT: number;
   textLayer: JSX.Element;
-  shape: Shapes;
+  shape: string;
   palette: TechaeonPalette;
+  isCustomImage: boolean;
 }
 
 const FrontSide = ({
@@ -24,12 +25,22 @@ const FrontSide = ({
   textLayer,
   shape,
   palette,
+  isCustomImage
 }: Props) => {
-  console.log('Image', image?.width)
-  const imageWidth = 200
-  const imageHeight = 200
+  if (image) {
+    image.crossOrigin = "Anonymous";
+  }
+
+  const { frontSideReference } = useTechaeonDownloadProvider();
+
   return (
-    <Stage width={size} height={size} scale={{ x: x, y: y }}>
+    <Stage
+      width={size}
+      height={size}
+      scale={{ x: x, y: y }}
+      //@ts-ignore
+      ref={frontSideReference}
+    >
       <Layer>
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}
@@ -38,19 +49,33 @@ const FrontSide = ({
           scale={{ x: 0.7, y: 0.7 }}
           fill={palette[900]}
         />
-      
-        <Image
+
+        {/* <Image
           image={image}
-         
-          // x={BASE_SIZE * 0.22 + STARTING_POINT}
-          // y={BASE_SIZE * 0.25 + STARTING_POINT}
-          x={BASE_SIZE / 2 - imageWidth / 2}
-          y={BASE_SIZE / 2 - imageHeight / 2}
-          width={imageWidth}
-          cornerRadius={imageWidth/2}
-          height={imageHeight}
-        />
-          <Path
+          x={BASE_SIZE / 2 - 50}
+          y={BASE_SIZE / 2 - 50}
+          width={120}
+          height={120}
+        /> */}
+
+        {isCustomImage ?
+          <Image
+            image={image}
+            x={BASE_SIZE / 2 - 65}
+            y={BASE_SIZE / 2 - 65}
+            width={150}
+            height={150}
+          />
+          :
+          <Image
+            image={image}
+            x={BASE_SIZE / 2 - 50}
+            y={BASE_SIZE / 2 - 50}
+            width={120}
+            height={120}
+          />}
+
+        <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}
           y={BASE_SIZE * 0.15 + STARTING_POINT}
           data={shape.split("Z")[0]}
