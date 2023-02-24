@@ -41,9 +41,14 @@ function AnimationWrapper({ frontSide, backSide, height, width }: Props) {
     //@ts-ignore
     const uri = frontSideReference.current.toDataURL();
     downloadImage(uri, "front.png");
-    //@ts-ignore
-    const uri2 = backSideReference.current.toDataURL();
-    downloadImage(uri2, "back.png");
+
+    setTimeout(() => {
+      //@ts-ignore
+      const uri2 = backSideReference.current.toDataURL();
+      downloadImage(uri2, "back.png");
+    }, 500);
+
+
   }
 
   return (
