@@ -11,7 +11,7 @@ type Props = {
 const ColorButton = ({ color, name, clickHandler,selected }: Props) => {
   //please generate button look based on path
   return (
-    <div style={{backgroundColor: `rgb(${color.r},${color.g},${color.b})`,borderColor: selected ? '#05ADA0' : 'white', borderWidth: 2}}
+    <div style={{backgroundColor: `rgb(${color.r},${color.g},${color.b})`,borderColor: selected ? '#05ADA0' : 'white', borderWidth: 2, height:250}}
       className="flex-1 p-10 rounded-md cursor-pointer"
       onClick={ clickHandler}
     >
