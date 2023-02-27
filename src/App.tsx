@@ -109,7 +109,7 @@ function App() {
             : <></>}
         </section>
 
-        <div className="w-full flex-1 flex flex-col justify-center items-center gap-4">
+        <div className="w-full flex-1 flex flex-col items-center gap-4">
           <TechaeonCoin
             shape={shape}
             color={color}
