@@ -20,8 +20,8 @@ export type ShapeKeys = keyof typeof techaeonShapes;
 
 
 export default function useTechaeonParams() {
-  const [shape, setShape] = useState<string>(techaeonShapes.hexagon);
-  const [color, setColor] = useState<ColorFormats.RGB>(techaeonColors.Silver);
+  const [shape, setShape] = useState<string>(techaeonShapes.square);
+  const [color, setColor] = useState<ColorFormats.RGB>(techaeonColors.Gold);
   const [img, setImg] = useState("");
   const [showImageSearchOption, setShowImageSearchOption] = useState(false);
 

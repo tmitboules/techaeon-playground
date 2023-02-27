@@ -30,25 +30,29 @@ function App() {
   return (
     <main>
       <SiteHeader />
-      <div className="flex">
+      <div style={{ marginLeft: 20 }} className="flex">
         <section className="flex-1">
           {/* shape buttons */}
           <div className="flex gap-2">
             {Object.entries(techaeonShapes).map(([name, path]) => (
               <ShapeButton
+                key={name}
                 path={path}
                 name={name}
                 clickHandler={() => setShape(techaeonShapes[name as ShapeKeys])}
+                selected={shape == path ? true : false}
               />
             ))}
           </div>
           {/* color buttons */}
           <div className="flex gap-2 flex-1 mt-10">
-            {Object.entries(techaeonColors).map(([name, color]) => (
+            {Object.entries(techaeonColors).map(([name, colorr]) => (
               <ColorButton
+                key={name}
                 name={name}
-                color={color}
-                clickHandler={() => setColor(color)}
+                color={colorr}
+                clickHandler={() => setColor(colorr)}
+                selected={color == colorr ? true : false}
               />
             ))}
           </div>
@@ -115,7 +119,8 @@ function App() {
             imageUrl={img ? img : "./lion-logo.png"}
           // imageUrl="https://konvajs.org/assets/lion.png"
           />
-          <button
+          {/* <>{View}</> */}
+          {/* <button
             type="button"
             className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
@@ -126,7 +131,7 @@ function App() {
             className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Download
-          </button>
+          </button> */}
         </div>
       </div>
 

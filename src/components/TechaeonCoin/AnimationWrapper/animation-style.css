@@ -41,11 +41,26 @@ body {
   -o-animation: flipFront 1s ease-out forwards;
   animation: flipFront 1s ease-out forwards;
 }
+
 .coin.back {
   -webkit-animation: flipBack 1s ease-out forwards;
   -moz-animation: flipBack 1s ease-out forwards;
   -o-animation: flipBack 1s ease-out forwards;
   animation: flipBack 1s ease-out forwards;
+}
+
+.coin.shrink {
+  -webkit-animation: coinShrink 0.8s ease-in forwards;
+  -moz-animation: coinShrink 0.8s ease-in forwards;
+  -o-animation: coinShrink 0.8s ease-in forwards;
+  animation: coinShrink 0.8s ease-in forwards;
+}
+
+.coin.shrink-out {
+  -webkit-animation: coinShrinkOut 0.5s ease-out forwards;
+  -moz-animation: coinShrinkOut 0.5s ease-out forwards;
+  -o-animation: coinShrinkOut 0.5s ease-out forwards;
+  animation: coinShrinkOut 0.5s ease-out forwards;
 }
 
 @keyframes flipFront {
@@ -70,5 +85,27 @@ body {
     -webkit-transform: rotateY(0);
     -moz-transform: rotateY(0);
     transform: rotateY(0);
+  }
+}
+
+@keyframes coinShrink {
+  0% {
+    scale: 1;
+  }
+  98% {
+    scale: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+@keyframes coinShrinkOut {
+  0% {
+    scale: 0;
+    display: "flex";
+  }
+  100% {
+    scale: 1;
   }
 }

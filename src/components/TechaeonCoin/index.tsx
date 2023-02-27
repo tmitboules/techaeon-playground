@@ -13,6 +13,8 @@ type Props = {
   branding: string;
   imageUrl: string;
   isCustomImage: boolean;
+  withoutAnimation?: boolean;
+  onlyShape?: boolean;
 };
 
 const STARTING_POINT = 10;
@@ -24,11 +26,13 @@ const TechaeonCoin = ({
   color,
   branding,
   imageUrl,
-  isCustomImage
+  isCustomImage,
+  withoutAnimation,
+  onlyShape,
 }: Props) => {
   const palette = generatePalette(color);
   const size = 260 * scale;
-  const [image] = useImage(imageUrl);
+  const [image] = useImage(imageUrl ? imageUrl : "");
   const [logoImage] = useImage("./coin-logo.png");
 
   let shapePath = "";
@@ -72,24 +76,43 @@ const TechaeonCoin = ({
 
   const textLayer = (
     <Layer>
-      {textSidePaths.map((pathData) => (
-        <TextPath
-          key={pathData}
-          data={pathData}
-          fill={palette[900]}
-          fontSize={10}
-          fontStyle={"900"}
-          fontFamily={"Cinzel"}
-          text={branding}
-          align={"center"}
-          x={STARTING_POINT}
-          y={STARTING_POINT}
-          scale={{ x: 1, y: 1 }}
-          letterSpacing={0.4}
-        ></TextPath>
-      ))}
+      {branding &&
+        textSidePaths.map((pathData) => (
+          <TextPath
+            key={pathData}
+            data={pathData}
+            fill={palette[900]}
+            fontSize={10}
+            fontStyle={"900"}
+            fontFamily={"Cinzel"}
+            text={branding}
+            align={"center"}
+            x={STARTING_POINT}
+            y={STARTING_POINT}
+            scale={{ x: 1, y: 1 }}
+            letterSpacing={0.4}
+          ></TextPath>
+        ))}
     </Layer>
   );
+
+  if (withoutAnimation) {
+    return (
+      <FrontSide
+        BASE_SIZE={BASE_SIZE}
+        STARTING_POINT={STARTING_POINT}
+        shape={shapePath}
+        palette={palette}
+        image={image}
+        size={size}
+        x={scale}
+        y={scale}
+        textLayer={textLayer}
+        onlyShape={onlyShape}
+        isCustomImage={isCustomImage}
+      ></FrontSide>
+    );
+  }
 
   return (
     <AnimationWrapper
