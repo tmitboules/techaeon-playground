@@ -12,6 +12,7 @@ interface Props {
   textLayer: JSX.Element;
   shape: string;
   palette: TechaeonPalette;
+  isCustomImage: boolean;
   onlyShape?: boolean;
 }
 
@@ -25,6 +26,7 @@ const FrontSide = ({
   textLayer,
   shape,
   palette,
+  isCustomImage,
   onlyShape,
 }: Props) => {
   if (image) {
@@ -105,15 +107,42 @@ const FrontSide = ({
           fill={palette[900]}
           
         />
-        <Image
+
+        {/* <Image
           image={image}
-          // x={BASE_SIZE * 0.22 + STARTING_POINT}
-          // y={BASE_SIZE * 0.25 + STARTING_POINT}
           x={BASE_SIZE / 2 - 50}
           y={BASE_SIZE / 2 - 50}
           width={120}
           height={120}
+        /> */}
+
+        {isCustomImage ?
+          <Image
+            image={image}
+            x={BASE_SIZE / 2 - 65}
+            y={BASE_SIZE / 2 - 65}
+            width={150}
+            height={150}
+          />
+          :
+          <Image
+            image={image}
+            x={BASE_SIZE / 2 - 50}
+            y={BASE_SIZE / 2 - 50}
+            width={120}
+            height={120}
+          />}
+
+        <Path
+          x={BASE_SIZE * 0.15 + STARTING_POINT}
+          y={BASE_SIZE * 0.15 + STARTING_POINT}
+          data={shape.split("Z")[0]}
+          scale={{ x: 0.7, y: 0.7 }}
+          fill={palette[900]}
+          opacity={0.5}
         />
+
+
         <Path
           x={STARTING_POINT}
           y={STARTING_POINT}
@@ -145,6 +174,8 @@ const FrontSide = ({
             palette[900],
           ]}
         />
+
+
         <Path
           x={BASE_SIZE * 0.03 + STARTING_POINT}
           y={BASE_SIZE * 0.03 + STARTING_POINT}

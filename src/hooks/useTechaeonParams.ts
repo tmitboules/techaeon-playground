@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ColorFormats } from "tinycolor2";
 
 export const techaeonColors = {
@@ -18,16 +18,21 @@ export const techaeonShapes = {
 
 export type ShapeKeys = keyof typeof techaeonShapes;
 
+
 export default function useTechaeonParams() {
   const [shape, setShape] = useState<string>(techaeonShapes.square);
   const [color, setColor] = useState<ColorFormats.RGB>(techaeonColors.Gold);
   const [img, setImg] = useState("");
+  const [showImageSearchOption, setShowImageSearchOption] = useState(false);
 
   return {
     shape,
     color,
     img,
+    setImg,
     setShape,
     setColor,
+    showImageSearchOption,
+    setShowImageSearchOption,
   };
 }

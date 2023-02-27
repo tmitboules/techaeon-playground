@@ -10,8 +10,9 @@ type Props = {
   shape: string;
   scale?: number;
   color: ColorFormats.RGB;
-  branding?: string;
-  imageUrl?: string;
+  branding: string;
+  imageUrl: string;
+  isCustomImage: boolean;
   withoutAnimation?: boolean;
   onlyShape?: boolean;
 };
@@ -25,6 +26,7 @@ const TechaeonCoin = ({
   color,
   branding,
   imageUrl,
+  isCustomImage,
   withoutAnimation,
   onlyShape,
 }: Props) => {
@@ -107,6 +109,7 @@ const TechaeonCoin = ({
         y={scale}
         textLayer={textLayer}
         onlyShape={onlyShape}
+        isCustomImage={isCustomImage}
       ></FrontSide>
     );
   }
@@ -125,6 +128,7 @@ const TechaeonCoin = ({
           size={size}
           x={scale}
           y={scale}
+          isCustomImage={isCustomImage}
           textLayer={textLayer}
         ></FrontSide>
       }
