@@ -1,9 +1,10 @@
 
 
-import { Link } from '@mui/material';
+import { Link, Backdrop, CircularProgress } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import { ImagesResponseDataInner } from "openai";
 import { useEffect } from 'react';
+
 
 import ColorButton from "./components/ColorButtons";
 import ShapeButton from "./components/ShapeButtons";
@@ -18,7 +19,7 @@ import useTechaeonParams, {
 
 function App() {
   const { shape, setShape, color, setColor, img, setImg, setShowImageSearchOption, showImageSearchOption } = useTechaeonParams();
-  const { generateImageOnString, searchedImages, openFileSelector, selectedImage } = useImageSearchHook()
+  const { generateImageOnString, searchedImages, openFileSelector, selectedImage, searchedPrompt, setSearchedPrompt, imageSearchLoading, setSearchedImages } = useImageSearchHook()
 
   useEffect(() => {
     setImg(selectedImage)
@@ -61,6 +62,8 @@ function App() {
               onClick={() => {
                 openFileSelector()
                 setShowImageSearchOption(false)
+                setSearchedPrompt('')
+                setSearchedImages([])
               }
               }
               type="button"
@@ -76,19 +79,19 @@ function App() {
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Search Image Online
+              Generate AI Image
             </button>
           </div>
 
           {showImageSearchOption ?
             <div  >
               <div className="flex gap-2 flex-1 mt-10">
-                <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Image" required>
+                <input value={searchedPrompt} onChange={e => setSearchedPrompt(e.target.value)} type="text" id="search_image_input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Image" required>
                 </input>
-            
+
                 <button
                   onClick={() => {
-                    generateImageOnString('tiger')
+                    generateImageOnString(searchedPrompt)
                   }}
                   type="button"
                   className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -96,6 +99,12 @@ function App() {
                   Search
                 </button>
               </div>
+
+              {imageSearchLoading ?
+                <Backdrop open>
+                  <CircularProgress color="inherit" />
+                </Backdrop>
+                : <></>}
 
               {searchedImages.length > 0 ?
                 <div style={{ margin: 10 }}>

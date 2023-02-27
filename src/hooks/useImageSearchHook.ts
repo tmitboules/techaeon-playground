@@ -12,6 +12,7 @@ export default function useImageSearchHook() {
   const [imageSearchLoading, setImageSearchLoading] = useState(false);
   const [searchedImages, setSearchedImages] = useState<ImagesResponseDataInner[]>([]);
   const [selectedImage, setSelectedImage] = useState('')
+  const [searchedPrompt, setSearchedPrompt] = useState('')
 
   const [openFileSelector, { filesContent, loading, errors }] = useFilePicker({
     readAs: 'DataURL',
@@ -57,6 +58,9 @@ export default function useImageSearchHook() {
     searchedImages,
     imageSearchLoading,
     openFileSelector,
-    selectedImage
+    selectedImage,
+    searchedPrompt, 
+    setSearchedPrompt,
+    setSearchedImages
   };
 }
