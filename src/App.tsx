@@ -84,7 +84,7 @@ function App() {
           </div>
 
           {showImageSearchOption ?
-            <div  >
+            <div style={{ marginBottom: 10}}  >
               <div className="flex gap-2 flex-1 mt-10">
                 <input value={searchedPrompt} onChange={e => setSearchedPrompt(e.target.value)} type="text" id="search_image_input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Image" required>
                 </input>
