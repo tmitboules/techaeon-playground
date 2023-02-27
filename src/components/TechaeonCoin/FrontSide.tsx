@@ -29,9 +29,9 @@ const FrontSide = ({
   isCustomImage,
   onlyShape,
 }: Props) => {
-  if (image) {
-    image.crossOrigin = "Anonymous";
-  }
+  // if (image) {
+  //   image.crossOrigin = "Anonymous";
+  // }
 
   const { frontSideReference } = useTechaeonDownloadProvider();
 

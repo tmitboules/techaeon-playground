@@ -19,15 +19,17 @@ import useTechaeonParams, {
 
 function App() {
   const { shape, setShape, color, setColor, img, setImg, setShowImageSearchOption, showImageSearchOption } = useTechaeonParams();
-  const { generateImageOnString, searchedImages, openFileSelector, selectedImage, searchedPrompt, setSearchedPrompt, imageSearchLoading, setSearchedImages } = useImageSearchHook()
+  const { generateImageOnString, searchedImages, openFileSelector, selectedImage, setSelectedImage, searchedPrompt, setSearchedPrompt, imageSearchLoading, setSearchedImages } = useImageSearchHook()
 
   useEffect(() => {
     setImg(selectedImage)
   }, [selectedImage])
 
   const ImageItem = (item: ImagesResponseDataInner) => {
-    return <Link sx={{ ":hover": { cursor: "pointer" } }}> <img onClick={() => { setImg(item.url ?? '') }} style={{ height: 180, width: 180 }} className="result-images" src={item.url} alt="Generated Image" /></Link>
+    return <
+      Link sx={{ ":hover": { cursor: "pointer" } }}> <img onClick={() => { setSelectedImage(item.url) }} style={{ height: 180, width: 180 }} className="result-images" src={item.url} alt="Generated Image" /></Link>
   }
+  
   return (
     <main>
       <SiteHeader />
@@ -57,6 +59,7 @@ function App() {
               />
             ))}
           </div>
+       
           <div className="flex gap-2 flex-1 mt-10">
             <button
               onClick={() => {

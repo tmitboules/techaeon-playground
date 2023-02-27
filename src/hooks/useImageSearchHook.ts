@@ -61,6 +61,7 @@ export default function useImageSearchHook() {
     selectedImage,
     searchedPrompt, 
     setSearchedPrompt,
-    setSearchedImages
+    setSearchedImages,
+    setSelectedImage
   };
 }
