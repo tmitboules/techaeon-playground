@@ -15,13 +15,7 @@ const ShapeButton = ({ path, name, clickHandler, selected }: Props) => {
       className="flex-1 p-14 rounded-md cursor-pointer flex align-center justify-center"
       onClick={clickHandler}
     >
-      <TechaeonCoin
-        shape={path}
-        color={{ r: 70, g: 70, b: 70 }}
-        scale={0.5}
-        withoutAnimation={true}
-        onlyShape={true}
-      />
+      <h1>{name}</h1>
     </div>
   );
 };

@@ -51,11 +51,10 @@ const FrontSide = ({
             data={shape.split("Z")[0]}
             scale={{ x: 0.7, y: 0.7 }}
             shadowBlur={6}
-            shadowColor='white'
+            shadowColor="white"
             shadowOpacity={0.45}
             shadowOffsetX={0}
             shadowOffsetY={-5}
-
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
             fillLinearGradientEndPoint={{ x: 0, y: BASE_SIZE }}
             fillLinearGradientColorStops={[
@@ -66,10 +65,10 @@ const FrontSide = ({
               0.6,
               palette[100],
             ]}
-  
-          //  fill={palette[900]}
+
+            //  fill={palette[900]}
           />
-                    <Path
+          <Path
             x={BASE_SIZE * 0.21 + STARTING_POINT}
             y={BASE_SIZE * 0.21 + STARTING_POINT}
             data={shape.split("Z")[0]}
@@ -81,7 +80,7 @@ const FrontSide = ({
               palette[300],
               1,
               palette[300],
-             0.2,
+              0.2,
               palette[300],
             ]}
           />
@@ -105,7 +104,6 @@ const FrontSide = ({
           data={shape.split("Z")[0]}
           scale={{ x: 0.7, y: 0.7 }}
           fill={palette[900]}
-          
         />
 
         {/* <Image
@@ -116,7 +114,7 @@ const FrontSide = ({
           height={120}
         /> */}
 
-        {isCustomImage ?
+        {isCustomImage ? (
           <Image
             image={image}
             x={BASE_SIZE / 2 - 65}
@@ -124,14 +122,15 @@ const FrontSide = ({
             width={150}
             height={150}
           />
-          :
+        ) : (
           <Image
             image={image}
             x={BASE_SIZE / 2 - 50}
             y={BASE_SIZE / 2 - 50}
             width={120}
             height={120}
-          />}
+          />
+        )}
 
         <Path
           x={BASE_SIZE * 0.15 + STARTING_POINT}
@@ -141,7 +140,6 @@ const FrontSide = ({
           fill={palette[900]}
           opacity={0.5}
         />
-
 
         <Path
           x={STARTING_POINT}
@@ -174,7 +172,6 @@ const FrontSide = ({
             palette[900],
           ]}
         />
-
 
         <Path
           x={BASE_SIZE * 0.03 + STARTING_POINT}
