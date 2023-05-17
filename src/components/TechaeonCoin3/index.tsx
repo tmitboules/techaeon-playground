@@ -42,7 +42,7 @@ const TechaeonCoin3 = ({ scale, shape, color }: Props) => {
           fillLinearGradientEndPoint={{ x: 0, y: size }}
           fillLinearGradientColorStops={[
             0.8,
-            palette[500],
+            palette[600],
             1,
             palette[700],
             0.2,
@@ -50,7 +50,7 @@ const TechaeonCoin3 = ({ scale, shape, color }: Props) => {
           ]}
         />
         {/* Imagine this is an image  */}
-        <Rect width={size} height={size} fill="red" />
+        {/* <Rect width={size} height={size} fill="red" /> */}
       </Layer>
       {/* bezel */}
       <Layer style={{ overflow: "hidden" }} x={bezel / 2} y={bezel / 2}>
