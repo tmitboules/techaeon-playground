@@ -166,7 +166,7 @@ function App() {
         </section>
 
         <div className="w-full flex-1 flex flex-col items-center gap-4">
-          <TechaeonCoin3 shape={shape} color={color} scale={1} />
+          <TechaeonCoin3 image={img} shape={shape} color={color} scale={1} />
         </div>
       </div>
     </main>
