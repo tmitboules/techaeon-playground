@@ -54,7 +54,21 @@ const TechaeonCoin3 = ({ scale, shape, color, image: imageUrl }: Props) => {
           ]}
         />
         {/* Imagine this is an image  */}
-        <Image image={image} width={250} height={250} x={0} y={0} />
+        <Image image={image} width={size} height={size} x={0} y={0} />
+        <Path
+          data={shape}
+          fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+          fillLinearGradientEndPoint={{ x: 0, y: size }}
+          fillLinearGradientColorStops={[
+            0.8,
+            palette[600],
+            1,
+            palette[700],
+            0.2,
+            palette[900],
+          ]}
+          opacity={0.3}
+        />
       </Layer>
       {/* bezel */}
       <Layer style={{ overflow: "hidden" }} x={bezel / 2} y={bezel / 2}>
