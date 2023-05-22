@@ -13,6 +13,14 @@ export type TechaeonPalette = {
   900: string;
 };
 
+//return a promise that resolves with a File instance
+export const urltoFile = (url: string, filename: string, mimeType: string) => {
+  return (fetch(url)
+    .then(function (res) { return res.arrayBuffer(); })
+    .then(function (buf) { return new File([buf], filename, { type: mimeType }); })
+  );
+}
+
 export function generatePalette(c: ColorFormats.RGB) {
   const palette = {} as TechaeonPalette;
 
@@ -28,3 +36,15 @@ export function generatePalette(c: ColorFormats.RGB) {
     ...palette,
   };
 }
+
+export const convertBase64ImagetoURL = async (image: string) => {
+  const contentType = "image/png";
+  const imageToDisplay = await urltoFile(
+    "data:image/png;base64," + image,
+    `openapi-image-${Date.now()}.png`,
+    contentType
+  );
+
+  const convertedFile = URL.createObjectURL(imageToDisplay)
+  return convertedFile
+};
