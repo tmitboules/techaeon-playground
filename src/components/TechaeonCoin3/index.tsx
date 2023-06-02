@@ -25,16 +25,20 @@ const TechaeonCoin3 = ({ scale, shape, color, image: imageUrl }: Props) => {
   const size = 240;
   const bezel = size * 0.07;
 
-  const fullSize = (bezel + size) * scale;
+  const layerSize = (bezel + size);
+
+  const fullSize = layerSize * 1;
 
   const [image] = useImage(imageUrl ? imageUrl : "");
+
+  //console.log(fullSize)
 
   return (
     <Stage width={fullSize} height={fullSize} scale={{ x: scale, y: scale }}>
       <Layer
         clipFunc={(ctx) => {
           const path = new Path2D(shape);
-          ctx.rect(fullSize, 0, -fullSize, fullSize);
+          ctx.rect(layerSize, 0, -layerSize, layerSize);
           ctx._context.clip(path);
         }}
         x={bezel / 2}

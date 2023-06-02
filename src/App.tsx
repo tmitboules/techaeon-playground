@@ -295,7 +295,10 @@ function App() {
 
         <div className="w-full flex-1 flex flex-col items-center gap-4">
           <div>
-            <TechaeonCoin3 image={img} shape={shape} color={color} scale={1} />
+            <TechaeonCoin3 image={img} 
+              shape={shape} 
+              color={color} 
+              scale={0.8} />
           </div>
           <div className="mt-[5rem]">
             <TechaeonCoin3BackSide
