@@ -39,7 +39,9 @@ const TechaeonCoin3BackSide = ({
   const size = 240;
   const bezel = size * 0.07;
 
-  const fullSize = (bezel + size) * scale;
+  const layerSize = bezel + size;
+
+  const fullSize = layerSize * scale;
 
   const [image] = useImage(imageUrl ? imageUrl : "");
 
@@ -53,7 +55,7 @@ const TechaeonCoin3BackSide = ({
       <Layer
         clipFunc={(ctx) => {
           const path = new Path2D(shape);
-          ctx.rect(fullSize, 0, -fullSize, fullSize);
+          ctx.rect(layerSize, 0, -layerSize, layerSize);
           ctx._context.clip(path);
         }}
         x={bezel / 2}
@@ -81,7 +83,7 @@ const TechaeonCoin3BackSide = ({
             fontSize={22}
             fontStyle="bold"
             fontFamily="Neue-Kabel"
-            width={fullSize - 45}
+            width={layerSize - 45}
             x={15}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
             fillLinearGradientEndPoint={{ x: 0, y: size }}
@@ -94,7 +96,7 @@ const TechaeonCoin3BackSide = ({
           />
           <Group x={63} y={60}>
             <Rect
-              width={fullSize - 140}
+              width={layerSize - 140}
               height={30}
               fill={palette[600]}
               cornerRadius={5}

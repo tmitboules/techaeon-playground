@@ -300,12 +300,12 @@ function App() {
               color={color} 
               scale={0.8} />
           </div>
-          <div className="mt-[5rem]">
+          <div className="m-[5rem]">
             <TechaeonCoin3BackSide
               image={img}
               shape={shape}
               color={color}
-              scale={1}
+              scale={0.8}
             />
           </div>
         </div>
