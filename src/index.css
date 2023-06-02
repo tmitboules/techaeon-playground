@@ -20,6 +20,13 @@
   font-weight: 900;
 }
 
+@font-face {
+  font-family: "Neue-Kabel";
+  src: url("/fonts/Neue-Kabel/NeueKabel-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: "bold";
+}
+
 html,
 body {
   padding: 0;

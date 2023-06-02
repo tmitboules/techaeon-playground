@@ -7,12 +7,13 @@ import ColorButton from "./components/ColorButtons";
 import ShapeButton from "./components/ShapeButtons";
 import SiteHeader from "./components/SiteHeader";
 import TechaeonCoin3 from "./components/TechaeonCoin3";
+import TechaeonCoin3BackSide from "./components/TechaeonCoin3BackSide";
 import useAIImageHook from "./hooks/useAIImageHook";
 import useImageSearchHook from "./hooks/useImageSearchHook";
 import useTechaeonParams, {
   ShapeKeys,
   techaeonColors,
-  techaeonShapes
+  techaeonShapes,
 } from "./hooks/useTechaeonParams";
 import { convertBase64ImagetoURL } from "./utils";
 
@@ -52,13 +53,13 @@ function App() {
     setChatGPTSearchText,
     getImagesFromDreamStudio,
     searchedBase64Images,
-  } = useAIImageHook()
+  } = useAIImageHook();
 
   useEffect(() => {
     setImg(selectedImage);
   }, [selectedImage]);
 
-  console.log('length:::', searchedBase64Images.length)
+  // console.log("length:::", searchedBase64Images.length);
 
   const ImageItem = (item: ImagesResponseDataInner) => {
     return (
@@ -81,7 +82,7 @@ function App() {
       <Link sx={{ ":hover": { cursor: "pointer" } }}>
         <img
           onClick={async () => {
-            const convertedFile = await convertBase64ImagetoURL(base64)
+            const convertedFile = await convertBase64ImagetoURL(base64);
             setSelectedImage(convertedFile);
           }}
           style={{ height: 180, width: 180 }}
@@ -95,78 +96,81 @@ function App() {
 
   const renderDreamSearchEventView = () => {
     if (!eventDetailsVisible) {
-      return <></>
+      return <></>;
     }
 
-    return <div style={{ marginBottom: 10 }}>
-      <div className="flex gap-2 flex-1 mt-10">
-        <input
-          value={eventName}
-          onChange={(e) => setEventName(e.target.value)}
-          type="text"
-          id="event_name_input"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Event Name"
-          required
-        />
+    return (
+      <div style={{ marginBottom: 10 }}>
+        <div className="flex gap-2 flex-1 mt-10">
+          <input
+            value={eventName}
+            onChange={(e) => setEventName(e.target.value)}
+            type="text"
+            id="event_name_input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Event Name"
+            required
+          />
 
-        <input
-          value={eventDetails}
-          onChange={(e) => setEventDetails(e.target.value)}
-          type="text"
-          id="evnet_description_input"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Event Details"
-          required
-        />
+          <input
+            value={eventDetails}
+            onChange={(e) => setEventDetails(e.target.value)}
+            type="text"
+            id="evnet_description_input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Event Details"
+            required
+          />
 
-        <button
-          onClick={async () => {
-            const data = await callChatGPTAPI(`give me an image prompt for Dream Studio that would produce an awesome image for an event called ${eventName}. The event is described as ${eventDetails}`);
-            console.log('data:::', data)
-          }}
-          type="button"
-          className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Get Search String
-        </button>
-      </div>
-      <div className="flex gap-2 flex-1 mt-10" >
-        <textarea
-          value={chatGPTSearchText}
-          onChange={(e) => setChatGPTSearchText(e.target.value)}
-          // type="text"
-          id="chat_search_image_input"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search Image"
-          required
-        ></textarea>
-
-        <button
-          onClick={() => {
-            getImagesFromDreamStudio(chatGPTSearchText);
-          }}
-          type="button"
-          className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Search
-        </button>
-      </div>
-
-      {searchedBase64Images.length > 0 ? (
-        <div style={{ margin: 10 }}>
-
-          <Grid2 container gap={2} columns={3}>
-            {searchedBase64Images.map((item) => {
-              return ImageItemWithBase64(item);
-            })}
-          </Grid2>
+          <button
+            onClick={async () => {
+              const data = await callChatGPTAPI(
+                `give me an image prompt for Dream Studio that would produce an awesome image for an event called ${eventName}. The event is described as ${eventDetails}`
+              );
+              console.log("data:::", data);
+            }}
+            type="button"
+            className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Get Search String
+          </button>
         </div>
-      ) : (
-        <></>
-      )}
-    </div>
-  }
+        <div className="flex gap-2 flex-1 mt-10">
+          <textarea
+            value={chatGPTSearchText}
+            onChange={(e) => setChatGPTSearchText(e.target.value)}
+            // type="text"
+            id="chat_search_image_input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Image"
+            required
+          ></textarea>
+
+          <button
+            onClick={() => {
+              getImagesFromDreamStudio(chatGPTSearchText);
+            }}
+            type="button"
+            className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Search
+          </button>
+        </div>
+
+        {searchedBase64Images.length > 0 ? (
+          <div style={{ margin: 10 }}>
+            <Grid2 container gap={2} columns={3}>
+              {searchedBase64Images.map((item) => {
+                return ImageItemWithBase64(item);
+              })}
+            </Grid2>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+    );
+  };
 
   return (
     <main>
@@ -217,7 +221,7 @@ function App() {
                 setShowImageSearchOption(
                   (showImageSearchOption) => !showImageSearchOption
                 );
-                setEventDetailsVisible(false)
+                setEventDetailsVisible(false);
               }}
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -226,7 +230,7 @@ function App() {
             </button>
             <button
               onClick={() => {
-                setShowImageSearchOption(false)
+                setShowImageSearchOption(false);
                 setEventDetailsVisible(
                   (eventDetailsVisible) => !eventDetailsVisible
                 );
@@ -264,7 +268,6 @@ function App() {
                 </button>
               </div>
 
-
               {imageSearchLoading ? (
                 <Backdrop open>
                   <CircularProgress color="inherit" />
@@ -291,7 +294,17 @@ function App() {
         </section>
 
         <div className="w-full flex-1 flex flex-col items-center gap-4">
-          <TechaeonCoin3 image={img} shape={shape} color={color} scale={1} />
+          <div>
+            <TechaeonCoin3 image={img} shape={shape} color={color} scale={1} />
+          </div>
+          <div className="mt-[5rem]">
+            <TechaeonCoin3BackSide
+              image={img}
+              shape={shape}
+              color={color}
+              scale={1}
+            />
+          </div>
         </div>
       </div>
     </main>
