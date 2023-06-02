@@ -27,7 +27,7 @@ const TechaeonCoin3 = ({ scale, shape, color, image: imageUrl }: Props) => {
 
   const layerSize = (bezel + size);
 
-  const fullSize = layerSize * 1;
+  const fullSize = layerSize * scale;
 
   const [image] = useImage(imageUrl ? imageUrl : "");
 
