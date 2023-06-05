@@ -1,6 +1,14 @@
 import tinycolor from "tinycolor2";
 import { ColorFormats } from "tinycolor2";
 
+export type Event = {
+  title: string;
+  date: string;
+  location: string;
+  time: string;
+  code: string;
+};
+
 export type TechaeonPalette = {
   100: string;
   200: string;

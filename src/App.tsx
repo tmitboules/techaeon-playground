@@ -295,10 +295,7 @@ function App() {
 
         <div className="w-full flex-1 flex flex-col items-center gap-4">
           <div>
-            <TechaeonCoin3 image={img} 
-              shape={shape} 
-              color={color} 
-              scale={1} />
+            <TechaeonCoin3 image={img} shape={shape} color={color} scale={1} />
           </div>
           <div className="m-[5rem]">
             <TechaeonCoin3BackSide
@@ -306,6 +303,13 @@ function App() {
               shape={shape}
               color={color}
               scale={1}
+              event={{
+                code: "3738388393993",
+                title: "The Last Shadow Puppets",
+                date: "29 Dec 2023",
+                time: "10:00pm",
+                location: "Indio CA",
+              }}
             />
           </div>
         </div>
