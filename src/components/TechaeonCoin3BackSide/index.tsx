@@ -94,7 +94,7 @@ const TechaeonCoin3BackSide = ({
           <Path
             data={shape}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: scaledSize }}
+            fillLinearGradientEndPoint={{ x: 0, y: size }}
             fillLinearGradientColorStops={[
               0.8,
               palette[600],
@@ -107,14 +107,14 @@ const TechaeonCoin3BackSide = ({
 
           {eventInfo && (
             <>
-              <Group y={scaledSize * 0.2}>
+              <Group y={size * 0.2}>
                 <Text
                   text={eventInfo.title}
                   wrap="word"
                   align="center"
                   y={5}
                   x={fullSize * 0.1}
-                  width={scaledSize - scaledSize * 0.2}
+                  width={size - size * 0.2}
                   fontSize={22}
                   fontStyle={textStyle.fontStyle}
                   fontFamily={textStyle.fontFamily}
@@ -133,9 +133,9 @@ const TechaeonCoin3BackSide = ({
                   shadowOffsetY={1.6}
                   shadowBlur={textStyle.shadowBlur}
                 />
-                <Group x={scaledSize * 0.25} y={scaledSize * 0.25}>
+                <Group x={size * 0.25} y={size * 0.25}>
                   <Rect
-                    width={scaledSize * 0.5}
+                    width={size * 0.5}
                     height={30}
                     fill={palette[600]}
                     cornerRadius={5}
@@ -146,7 +146,7 @@ const TechaeonCoin3BackSide = ({
                   />
                   <Text
                     y={7}
-                    width={scaledSize * 0.5}
+                    width={size * 0.5}
                     text={eventInfo.date}
                     align="center"
                     fontSize={18}
@@ -168,7 +168,7 @@ const TechaeonCoin3BackSide = ({
                     shadowBlur={textStyle.shadowBlur}
                   />
                 </Group>
-                <Group x={scaledSize * 0.23} y={scaledSize * 0.42}>
+                <Group x={size * 0.23} y={size * 0.42}>
                   <Group>
                     <Path
                       y={-2}
@@ -214,7 +214,7 @@ const TechaeonCoin3BackSide = ({
                       shadowBlur={textStyle.shadowBlur}
                     />
                   </Group>
-                  <Group x={scaledSize * 0.35}>
+                  <Group x={size * 0.35}>
                     <Path
                       y={-2}
                       x={-17}
@@ -258,10 +258,10 @@ const TechaeonCoin3BackSide = ({
                     />
                   </Group>
                 </Group>
-                <Group x={scaledSize * 0.25} y={scaledSize * 0.52}>
+                <Group x={size * 0.25} y={size * 0.52}>
                   <Text
                     text={`ID:${eventInfo.code}`}
-                    width={scaledSize * 0.5}
+                    width={size * 0.5}
                     align="center"
                     fontSize={13}
                     fontStyle={textStyle.fontStyle}

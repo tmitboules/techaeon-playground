@@ -64,7 +64,7 @@ const TechaeonCoin3 = ({ scale, shape, color, image: imageUrl }: Props) => {
           <Path
             data={shape}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: scaledSize }}
+            fillLinearGradientEndPoint={{ x: 0, y: size }}
             fillLinearGradientColorStops={[
               0.8,
               palette[600],
@@ -79,7 +79,7 @@ const TechaeonCoin3 = ({ scale, shape, color, image: imageUrl }: Props) => {
           <Path
             data={shape}
             fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-            fillLinearGradientEndPoint={{ x: 0, y: scaledSize }}
+            fillLinearGradientEndPoint={{ x: 0, y: size }}
             fillLinearGradientColorStops={[
               0.8,
               palette[600],
