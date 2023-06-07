@@ -56,11 +56,13 @@ const TechaeonCoin3BackSide = ({
   const textStyle = {
     fillLinearGradientStartPoint: { x: 0, y: 0 },
     fillLinearGradientEndPoint: { x: 0, y: size },
-    fillLinearGradientColorStops: [0, palette[1100], 1, palette[1100]],
-    shadowColor: palette[900],
+    fillLinearGradientColorStops: [0, palette[1000], 1, palette[1000]],
+    shadowColor: palette[1100],
     fontStyle: "bold",
     fontFamily: "Neue-Kabel",
     shadowBlur: 2.3,
+    shadowOffsetX: -1.6,
+    shadowOffsetY: 1.6,
   };
 
   return (
@@ -129,8 +131,8 @@ const TechaeonCoin3BackSide = ({
                   }
                   shadowColor={textStyle.shadowColor}
                   shadowEnabled
-                  shadowOffsetX={-1.6}
-                  shadowOffsetY={1.6}
+                  shadowOffsetX={textStyle.shadowOffsetX}
+                  shadowOffsetY={textStyle.shadowOffsetY}
                   shadowBlur={textStyle.shadowBlur}
                 />
                 <Group x={size * 0.25} y={size * 0.25}>
@@ -163,8 +165,8 @@ const TechaeonCoin3BackSide = ({
                     }
                     shadowColor={textStyle.shadowColor}
                     shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
+                    shadowOffsetX={textStyle.shadowOffsetX}
+                    shadowOffsetY={textStyle.shadowOffsetY}
                     shadowBlur={textStyle.shadowBlur}
                   />
                 </Group>
@@ -185,8 +187,8 @@ const TechaeonCoin3BackSide = ({
                       }
                       shadowColor={textStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={-1.6}
-                      shadowOffsetY={1.6}
+                      shadowOffsetX={textStyle.shadowOffsetX}
+                      shadowOffsetY={textStyle.shadowOffsetY}
                       shadowBlur={textStyle.shadowBlur}
                       scale={{ x: 0.8, y: 0.8 }}
                     />
@@ -209,8 +211,8 @@ const TechaeonCoin3BackSide = ({
                       }
                       shadowColor={textStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={-1.6}
-                      shadowOffsetY={1.6}
+                      shadowOffsetX={textStyle.shadowOffsetX}
+                      shadowOffsetY={textStyle.shadowOffsetY}
                       shadowBlur={textStyle.shadowBlur}
                     />
                   </Group>
@@ -230,8 +232,8 @@ const TechaeonCoin3BackSide = ({
                       }
                       shadowColor={textStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={-1.6}
-                      shadowOffsetY={1.6}
+                      shadowOffsetX={textStyle.shadowOffsetX}
+                      shadowOffsetY={textStyle.shadowOffsetY}
                       shadowBlur={textStyle.shadowBlur}
                       scale={{ x: 0.9, y: 0.9 }}
                     />
@@ -252,8 +254,8 @@ const TechaeonCoin3BackSide = ({
                       }
                       shadowColor={textStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={-1.6}
-                      shadowOffsetY={1.6}
+                      shadowOffsetX={textStyle.shadowOffsetX}
+                      shadowOffsetY={textStyle.shadowOffsetY}
                       shadowBlur={textStyle.shadowBlur}
                     />
                   </Group>
@@ -277,8 +279,8 @@ const TechaeonCoin3BackSide = ({
                     }
                     shadowColor={textStyle.shadowColor}
                     shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
+                    shadowOffsetX={textStyle.shadowOffsetX}
+                    shadowOffsetY={textStyle.shadowOffsetY}
                     shadowBlur={textStyle.shadowBlur}
                   />
                 </Group>
