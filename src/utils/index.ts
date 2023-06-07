@@ -47,7 +47,7 @@ export function generatePalette(c: ColorFormats.RGB) {
 
   palette[1000] = tinycolor(c).darken(16).toHexString();
 
-  palette[1100] = tinycolor(c).darken(30).toHexString();
+  palette[1100] = tinycolor(c).darken(35).toHexString();
 
   return {
     ...palette,

@@ -26,7 +26,7 @@ const TechaeonCoin3BackSide = ({
   shape,
   color,
   image: imageUrl,
-  event,
+  event: eventInfo,
 }: Props) => {
   const palette = generatePalette(color);
   const canvas = document.createElement("canvas");
@@ -56,9 +56,10 @@ const TechaeonCoin3BackSide = ({
     fillLinearGradientStartPoint: { x: 0, y: 0 },
     fillLinearGradientEndPoint: { x: 0, y: size },
     fillLinearGradientColorStops: [0, palette[1100], 1, palette[1100]],
-    shadowColor: palette[300],
+    shadowColor: palette[900],
     fontStyle: "bold",
     fontFamily: "Neue-Kabel",
+    shadowBlur: 2.3,
   };
 
   return (
@@ -87,169 +88,182 @@ const TechaeonCoin3BackSide = ({
             palette[900],
           ]}
         />
-        <Group y={60}>
-          <Text
-            text={event.title}
-            align="center"
-            width={layerSize - 45}
-            x={15}
-            fontSize={22}
-            fontStyle={textStyle.fontStyle}
-            fontFamily={textStyle.fontFamily}
-            fillLinearGradientStartPoint={
-              textStyle.fillLinearGradientStartPoint
-            }
-            fillLinearGradientEndPoint={textStyle.fillLinearGradientEndPoint}
-            fillLinearGradientColorStops={
-              textStyle.fillLinearGradientColorStops
-            }
-            shadowColor={textStyle.shadowColor}
-            shadowEnabled
-            shadowOffsetX={-1.6}
-            shadowOffsetY={1.6}
-            shadowBlur={2.3}
-          />
-          <Group x={63} y={60}>
-            <Rect
-              width={layerSize - 140}
-              height={30}
-              fill={palette[600]}
-              cornerRadius={5}
-              shadowBlur={5}
-              shadowOffsetX={0}
-              shadowOffsetY={3}
-              shadowColor={palette[900]}
-            />
-            <Text
-              x={8}
-              y={8}
-              text={event.date}
-              align="center"
-              fontSize={18}
-              fontStyle={textStyle.fontStyle}
-              fontFamily={textStyle.fontFamily}
-              fillLinearGradientStartPoint={
-                textStyle.fillLinearGradientStartPoint
-              }
-              fillLinearGradientEndPoint={textStyle.fillLinearGradientEndPoint}
-              fillLinearGradientColorStops={
-                textStyle.fillLinearGradientColorStops
-              }
-              shadowColor={textStyle.shadowColor}
-              shadowEnabled
-              shadowOffsetX={-1.6}
-              shadowOffsetY={1.6}
-              shadowBlur={2.3}
-            />
-          </Group>
-          <Group x={40} y={102}>
-            <Group>
-              <Path
-                y={-5}
-                data={locationIconPath}
-                fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-                fillLinearGradientEndPoint={{ x: 0, y: 20 }}
-                fillLinearGradientColorStops={[
-                  0,
-                  palette[1100],
-                  1,
-                  palette[1100],
-                ]}
-                shadowColor={palette[300]}
+        {eventInfo && (
+          <>
+            <Group y={size * 0.2}>
+              <Text
+                text={eventInfo.title}
+                wrap="word"
+                align="center"
+                x={size * 0.1}
+                width={size - size * 0.2}
+                fontSize={22}
+                fontStyle={textStyle.fontStyle}
+                fontFamily={textStyle.fontFamily}
+                fillLinearGradientStartPoint={
+                  textStyle.fillLinearGradientStartPoint
+                }
+                fillLinearGradientEndPoint={
+                  textStyle.fillLinearGradientEndPoint
+                }
+                fillLinearGradientColorStops={
+                  textStyle.fillLinearGradientColorStops
+                }
+                shadowColor={textStyle.shadowColor}
                 shadowEnabled
                 shadowOffsetX={-1.6}
                 shadowOffsetY={1.6}
-                shadowBlur={2.3}
+                shadowBlur={textStyle.shadowBlur}
               />
+              <Group x={size * 0.25} y={size * 0.25}>
+                <Rect
+                  width={size * 0.5}
+                  height={30}
+                  fill={palette[600]}
+                  cornerRadius={5}
+                  shadowBlur={5}
+                  shadowOffsetX={0}
+                  shadowOffsetY={3}
+                  shadowColor={palette[900]}
+                />
+                <Text
+                  y={7}
+                  width={size * 0.5}
+                  text={eventInfo.date}
+                  align="center"
+                  fontSize={18}
+                  fontStyle={textStyle.fontStyle}
+                  fontFamily={textStyle.fontFamily}
+                  fillLinearGradientStartPoint={
+                    textStyle.fillLinearGradientStartPoint
+                  }
+                  fillLinearGradientEndPoint={
+                    textStyle.fillLinearGradientEndPoint
+                  }
+                  fillLinearGradientColorStops={
+                    textStyle.fillLinearGradientColorStops
+                  }
+                  shadowColor={textStyle.shadowColor}
+                  shadowEnabled
+                  shadowOffsetX={-1.6}
+                  shadowOffsetY={1.6}
+                  shadowBlur={textStyle.shadowBlur}
+                />
+              </Group>
+              <Group x={size * 0.23} y={size * 0.42}>
+                <Group>
+                  <Path
+                    y={-5}
+                    x={-14}
+                    data={locationIconPath}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
 
-              <Text
-                x={20}
-                text={event.location}
-                align="center"
-                fontSize={13}
-                fontStyle={textStyle.fontStyle}
-                fontFamily={textStyle.fontFamily}
-                fillLinearGradientStartPoint={
-                  textStyle.fillLinearGradientStartPoint
-                }
-                fillLinearGradientEndPoint={
-                  textStyle.fillLinearGradientEndPoint
-                }
-                fillLinearGradientColorStops={
-                  textStyle.fillLinearGradientColorStops
-                }
-                shadowColor={textStyle.shadowColor}
-                shadowEnabled
-                shadowOffsetX={-1.6}
-                shadowOffsetY={1.6}
-                shadowBlur={2.3}
-              />
+                  <Text
+                    text={eventInfo.location}
+                    align="center"
+                    fontSize={13}
+                    fontStyle={textStyle.fontStyle}
+                    fontFamily={textStyle.fontFamily}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
+                </Group>
+                <Group x={size * 0.35}>
+                  <Path
+                    y={-3}
+                    x={-17}
+                    data={timeIconPath}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
+                  <Text
+                    text={eventInfo.time}
+                    align="center"
+                    fontSize={13}
+                    fontStyle={textStyle.fontStyle}
+                    fontFamily={textStyle.fontFamily}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
+                </Group>
+              </Group>
+              <Group x={size * 0.25} y={size * 0.52}>
+                <Text
+                  text={`ID:${eventInfo.code}`}
+                  width={size * 0.5}
+                  align="center"
+                  fontSize={13}
+                  fontStyle={textStyle.fontStyle}
+                  fontFamily={textStyle.fontFamily}
+                  fillLinearGradientStartPoint={
+                    textStyle.fillLinearGradientStartPoint
+                  }
+                  fillLinearGradientEndPoint={
+                    textStyle.fillLinearGradientEndPoint
+                  }
+                  fillLinearGradientColorStops={
+                    textStyle.fillLinearGradientColorStops
+                  }
+                  shadowColor={textStyle.shadowColor}
+                  shadowEnabled
+                  shadowOffsetX={-1.6}
+                  shadowOffsetY={1.6}
+                  shadowBlur={textStyle.shadowBlur}
+                />
+              </Group>
             </Group>
-            <Group x={90}>
-              <Path
-                y={-3}
-                data={timeIconPath}
-                fillLinearGradientStartPoint={
-                  textStyle.fillLinearGradientStartPoint
-                }
-                fillLinearGradientEndPoint={
-                  textStyle.fillLinearGradientEndPoint
-                }
-                fillLinearGradientColorStops={
-                  textStyle.fillLinearGradientColorStops
-                }
-                shadowColor={textStyle.shadowColor}
-                shadowEnabled
-                shadowOffsetX={-1.6}
-                shadowOffsetY={1.6}
-                shadowBlur={2.3}
-              />
-              <Text
-                x={20}
-                text={event.time}
-                align="center"
-                fontSize={13}
-                fontStyle={textStyle.fontStyle}
-                fontFamily={textStyle.fontFamily}
-                fillLinearGradientStartPoint={
-                  textStyle.fillLinearGradientStartPoint
-                }
-                fillLinearGradientEndPoint={
-                  textStyle.fillLinearGradientEndPoint
-                }
-                fillLinearGradientColorStops={
-                  textStyle.fillLinearGradientColorStops
-                }
-                shadowColor={textStyle.shadowColor}
-                shadowEnabled
-                shadowOffsetX={-1.6}
-                shadowOffsetY={1.6}
-                shadowBlur={2.3}
-              />
-            </Group>
-          </Group>
-          <Group x={68} y={125}>
-            <Text
-              text={`ID:${event.code}`}
-              align="center"
-              fontSize={13}
-              fontStyle={textStyle.fontStyle}
-              fontFamily={textStyle.fontFamily}
-              fillLinearGradientStartPoint={
-                textStyle.fillLinearGradientStartPoint
-              }
-              fillLinearGradientEndPoint={textStyle.fillLinearGradientEndPoint}
-              fillLinearGradientColorStops={
-                textStyle.fillLinearGradientColorStops
-              }
-              shadowColor={textStyle.shadowColor}
-              shadowEnabled
-              shadowOffsetX={-1.6}
-              shadowOffsetY={1.6}
-              shadowBlur={2.3}
-            />
-          </Group>
-        </Group>
+          </>
+        )}
       </Layer>
       {/* bezel */}
       <Layer style={{ overflow: "hidden" }} x={bezel / 2} y={bezel / 2}>
