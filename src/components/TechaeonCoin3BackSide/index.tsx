@@ -44,6 +44,7 @@ const TechaeonCoin3BackSide = ({
   const layerSize = bezel + size;
 
   const fullSize = layerSize * scale;
+  const scaledSize = size * scale;
 
   const [image] = useImage(imageUrl ? imageUrl : "");
 
@@ -63,186 +64,58 @@ const TechaeonCoin3BackSide = ({
   };
 
   return (
-    <Stage width={fullSize} height={fullSize} scale={{ x: scale, y: scale }}>
-      <Layer
-        clipFunc={(ctx) => {
-          const path = new Path2D(shape);
-          ctx.rect(layerSize, 0, -layerSize, layerSize);
-          ctx._context.clip(path);
+    <div
+      className="coin"
+      style={{
+        height: `${fullSize}px`,
+        width: `${fullSize}px`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Stage
+        width={scaledSize}
+        height={scaledSize}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-        x={bezel / 2}
-        y={bezel / 2}
-        width={fullSize}
+        scale={{ x: scale, y: scale }}
       >
-        <Path
-          data={shape}
-          // fill={palette[900]}
-          fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-          fillLinearGradientEndPoint={{ x: 0, y: size }}
-          fillLinearGradientColorStops={[
-            0.8,
-            palette[600],
-            1,
-            palette[700],
-            0.2,
-            palette[900],
-          ]}
-        />
-        {eventInfo && (
-          <>
-            <Group y={size * 0.2}>
-              <Text
-                text={eventInfo.title}
-                wrap="word"
-                align="center"
-                x={size * 0.1}
-                width={size - size * 0.2}
-                fontSize={22}
-                fontStyle={textStyle.fontStyle}
-                fontFamily={textStyle.fontFamily}
-                fillLinearGradientStartPoint={
-                  textStyle.fillLinearGradientStartPoint
-                }
-                fillLinearGradientEndPoint={
-                  textStyle.fillLinearGradientEndPoint
-                }
-                fillLinearGradientColorStops={
-                  textStyle.fillLinearGradientColorStops
-                }
-                shadowColor={textStyle.shadowColor}
-                shadowEnabled
-                shadowOffsetX={-1.6}
-                shadowOffsetY={1.6}
-                shadowBlur={textStyle.shadowBlur}
-              />
-              <Group x={size * 0.25} y={size * 0.25}>
-                <Rect
-                  width={size * 0.5}
-                  height={30}
-                  fill={palette[600]}
-                  cornerRadius={5}
-                  shadowBlur={5}
-                  shadowOffsetX={0}
-                  shadowOffsetY={3}
-                  shadowColor={palette[900]}
-                />
-                <Text
-                  y={7}
-                  width={size * 0.5}
-                  text={eventInfo.date}
-                  align="center"
-                  fontSize={18}
-                  fontStyle={textStyle.fontStyle}
-                  fontFamily={textStyle.fontFamily}
-                  fillLinearGradientStartPoint={
-                    textStyle.fillLinearGradientStartPoint
-                  }
-                  fillLinearGradientEndPoint={
-                    textStyle.fillLinearGradientEndPoint
-                  }
-                  fillLinearGradientColorStops={
-                    textStyle.fillLinearGradientColorStops
-                  }
-                  shadowColor={textStyle.shadowColor}
-                  shadowEnabled
-                  shadowOffsetX={-1.6}
-                  shadowOffsetY={1.6}
-                  shadowBlur={textStyle.shadowBlur}
-                />
-              </Group>
-              <Group x={size * 0.23} y={size * 0.42}>
-                <Group>
-                  <Path
-                    y={-5}
-                    x={-14}
-                    data={locationIconPath}
-                    fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
-                    }
-                    fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
-                    }
-                    fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
-                    }
-                    shadowColor={textStyle.shadowColor}
-                    shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
-                    shadowBlur={textStyle.shadowBlur}
-                  />
+        <Layer
+          clipFunc={(ctx) => {
+            const path = new Path2D(shape);
+            ctx.rect(size, 0, -size, size);
+            ctx._context.clip(path);
+          }}
+        >
+          <Path
+            data={shape}
+            fillLinearGradientStartPoint={{ x: 0, y: 0 }}
+            fillLinearGradientEndPoint={{ x: 0, y: scaledSize }}
+            fillLinearGradientColorStops={[
+              0.8,
+              palette[600],
+              1,
+              palette[700],
+              0.2,
+              palette[900],
+            ]}
+          />
 
-                  <Text
-                    text={eventInfo.location}
-                    align="center"
-                    fontSize={13}
-                    fontStyle={textStyle.fontStyle}
-                    fontFamily={textStyle.fontFamily}
-                    fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
-                    }
-                    fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
-                    }
-                    fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
-                    }
-                    shadowColor={textStyle.shadowColor}
-                    shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
-                    shadowBlur={textStyle.shadowBlur}
-                  />
-                </Group>
-                <Group x={size * 0.35}>
-                  <Path
-                    y={-3}
-                    x={-17}
-                    data={timeIconPath}
-                    fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
-                    }
-                    fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
-                    }
-                    fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
-                    }
-                    shadowColor={textStyle.shadowColor}
-                    shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
-                    shadowBlur={textStyle.shadowBlur}
-                  />
-                  <Text
-                    text={eventInfo.time}
-                    align="center"
-                    fontSize={13}
-                    fontStyle={textStyle.fontStyle}
-                    fontFamily={textStyle.fontFamily}
-                    fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
-                    }
-                    fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
-                    }
-                    fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
-                    }
-                    shadowColor={textStyle.shadowColor}
-                    shadowEnabled
-                    shadowOffsetX={-1.6}
-                    shadowOffsetY={1.6}
-                    shadowBlur={textStyle.shadowBlur}
-                  />
-                </Group>
-              </Group>
-              <Group x={size * 0.25} y={size * 0.52}>
+          {eventInfo && (
+            <>
+              <Group y={scaledSize * 0.2}>
                 <Text
-                  text={`ID:${eventInfo.code}`}
-                  width={size * 0.5}
+                  text={eventInfo.title}
+                  wrap="word"
                   align="center"
-                  fontSize={13}
+                  y={5}
+                  x={fullSize * 0.1}
+                  width={scaledSize - scaledSize * 0.2}
+                  fontSize={22}
                   fontStyle={textStyle.fontStyle}
                   fontFamily={textStyle.fontFamily}
                   fillLinearGradientStartPoint={
@@ -260,16 +133,176 @@ const TechaeonCoin3BackSide = ({
                   shadowOffsetY={1.6}
                   shadowBlur={textStyle.shadowBlur}
                 />
+                <Group x={scaledSize * 0.25} y={scaledSize * 0.25}>
+                  <Rect
+                    width={scaledSize * 0.5}
+                    height={30}
+                    fill={palette[600]}
+                    cornerRadius={5}
+                    shadowBlur={5}
+                    shadowOffsetX={0}
+                    shadowOffsetY={3}
+                    shadowColor={palette[900]}
+                  />
+                  <Text
+                    y={7}
+                    width={scaledSize * 0.5}
+                    text={eventInfo.date}
+                    align="center"
+                    fontSize={18}
+                    fontStyle={textStyle.fontStyle}
+                    fontFamily={textStyle.fontFamily}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
+                </Group>
+                <Group x={scaledSize * 0.23} y={scaledSize * 0.42}>
+                  <Group>
+                    <Path
+                      y={-2}
+                      x={-14}
+                      data={locationIconPath}
+                      fillLinearGradientStartPoint={
+                        textStyle.fillLinearGradientStartPoint
+                      }
+                      fillLinearGradientEndPoint={
+                        textStyle.fillLinearGradientEndPoint
+                      }
+                      fillLinearGradientColorStops={
+                        textStyle.fillLinearGradientColorStops
+                      }
+                      shadowColor={textStyle.shadowColor}
+                      shadowEnabled
+                      shadowOffsetX={-1.6}
+                      shadowOffsetY={1.6}
+                      shadowBlur={textStyle.shadowBlur}
+                      scale={{ x: 0.8, y: 0.8 }}
+                    />
+
+                    <Text
+                      // text={`${eventInfo.locationCity}, ${eventInfo.locationState}`}
+                      text={`${eventInfo.location}`}
+                      align="center"
+                      fontSize={13}
+                      fontStyle={textStyle.fontStyle}
+                      fontFamily={textStyle.fontFamily}
+                      fillLinearGradientStartPoint={
+                        textStyle.fillLinearGradientStartPoint
+                      }
+                      fillLinearGradientEndPoint={
+                        textStyle.fillLinearGradientEndPoint
+                      }
+                      fillLinearGradientColorStops={
+                        textStyle.fillLinearGradientColorStops
+                      }
+                      shadowColor={textStyle.shadowColor}
+                      shadowEnabled
+                      shadowOffsetX={-1.6}
+                      shadowOffsetY={1.6}
+                      shadowBlur={textStyle.shadowBlur}
+                    />
+                  </Group>
+                  <Group x={scaledSize * 0.35}>
+                    <Path
+                      y={-2}
+                      x={-17}
+                      data={timeIconPath}
+                      fillLinearGradientStartPoint={
+                        textStyle.fillLinearGradientStartPoint
+                      }
+                      fillLinearGradientEndPoint={
+                        textStyle.fillLinearGradientEndPoint
+                      }
+                      fillLinearGradientColorStops={
+                        textStyle.fillLinearGradientColorStops
+                      }
+                      shadowColor={textStyle.shadowColor}
+                      shadowEnabled
+                      shadowOffsetX={-1.6}
+                      shadowOffsetY={1.6}
+                      shadowBlur={textStyle.shadowBlur}
+                      scale={{ x: 0.9, y: 0.9 }}
+                    />
+                    <Text
+                      text={eventInfo.time}
+                      align="center"
+                      fontSize={13}
+                      fontStyle={textStyle.fontStyle}
+                      fontFamily={textStyle.fontFamily}
+                      fillLinearGradientStartPoint={
+                        textStyle.fillLinearGradientStartPoint
+                      }
+                      fillLinearGradientEndPoint={
+                        textStyle.fillLinearGradientEndPoint
+                      }
+                      fillLinearGradientColorStops={
+                        textStyle.fillLinearGradientColorStops
+                      }
+                      shadowColor={textStyle.shadowColor}
+                      shadowEnabled
+                      shadowOffsetX={-1.6}
+                      shadowOffsetY={1.6}
+                      shadowBlur={textStyle.shadowBlur}
+                    />
+                  </Group>
+                </Group>
+                <Group x={scaledSize * 0.25} y={scaledSize * 0.52}>
+                  <Text
+                    text={`ID:${eventInfo.code}`}
+                    width={scaledSize * 0.5}
+                    align="center"
+                    fontSize={13}
+                    fontStyle={textStyle.fontStyle}
+                    fontFamily={textStyle.fontFamily}
+                    fillLinearGradientStartPoint={
+                      textStyle.fillLinearGradientStartPoint
+                    }
+                    fillLinearGradientEndPoint={
+                      textStyle.fillLinearGradientEndPoint
+                    }
+                    fillLinearGradientColorStops={
+                      textStyle.fillLinearGradientColorStops
+                    }
+                    shadowColor={textStyle.shadowColor}
+                    shadowEnabled
+                    shadowOffsetX={-1.6}
+                    shadowOffsetY={1.6}
+                    shadowBlur={textStyle.shadowBlur}
+                  />
+                </Group>
               </Group>
-            </Group>
-          </>
-        )}
-      </Layer>
+            </>
+          )}
+        </Layer>
+      </Stage>
       {/* bezel */}
-      <Layer style={{ overflow: "hidden" }} x={bezel / 2} y={bezel / 2}>
-        <Path data={shape} strokeWidth={bezel} stroke={grd} />
-      </Layer>
-    </Stage>
+      <Stage
+        width={fullSize}
+        height={fullSize}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        scale={{ x: scale, y: scale }}
+      >
+        <Layer style={{ overflow: "visible" }} x={bezel / 2} y={bezel / 2}>
+          <Path data={shape} strokeWidth={bezel} stroke={grd} />
+        </Layer>
+      </Stage>
+    </div>
   );
 };
 
