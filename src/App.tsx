@@ -305,7 +305,7 @@ function App() {
               scale={1}
               event={{
                 code: "3738388393993",
-                title: "The Last Shadow",
+                title: "The Last Shadow Puppets",
                 // title: "The Last Shadow Puppets Puppets",
                 date: "29 Dec 2023",
                 time: "10:00pm",

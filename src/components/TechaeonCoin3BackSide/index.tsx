@@ -1,14 +1,4 @@
-import React from "react";
-import {
-  Layer,
-  Path,
-  Rect,
-  Shape,
-  Stage,
-  Image,
-  Text,
-  Group,
-} from "react-konva";
+import { Layer, Path, Rect, Stage, Text, Group } from "react-konva";
 import { ColorFormats } from "tinycolor2";
 import useImage from "use-image";
 import { Event, generatePalette, TechaeonPalette } from "../../utils";
@@ -53,17 +43,42 @@ const TechaeonCoin3BackSide = ({
   const timeIconPath =
     "M 8.5352 12.6881 C 9.9082 12.6881 11.2251 12.1426 12.196 11.1718 C 13.167 10.2008 13.7124 8.884 13.7124 7.5109 C 13.7124 6.1378 13.167 4.821 12.196 3.8501 C 11.2251 2.8792 9.9082 2.3337 8.5352 2.3337 C 7.1621 2.3337 5.8453 2.8792 4.8743 3.8501 C 3.9034 4.821 3.358 6.1378 3.358 7.5109 C 3.358 8.884 3.9034 10.2008 4.8743 11.1718 C 5.8453 12.1426 7.1621 12.6881 8.5352 12.6881 Z M 8.5352 1.0394 C 9.385 1.0394 10.2266 1.2068 11.0117 1.532 C 11.7969 1.8572 12.5103 2.3339 13.1112 2.9349 C 13.7122 3.5358 14.1888 4.2492 14.5141 5.0344 C 14.8393 5.8195 15.0066 6.6611 15.0066 7.5109 C 15.0066 9.2273 14.3249 10.8733 13.1112 12.087 C 11.8976 13.3006 10.2515 13.9824 8.5352 13.9824 C 4.9564 13.9824 2.0637 11.0702 2.0637 7.5109 C 2.0637 5.7946 2.7455 4.1485 3.9591 2.9349 C 5.1728 1.7212 6.8188 1.0394 8.5352 1.0394 Z M 8.8587 4.2752 V 7.6727 L 11.771 9.4006 L 11.2856 10.1966 L 7.888 8.1581 V 4.2752 H 8.8587 Z";
 
-  const textStyle = {
-    fillLinearGradientStartPoint: { x: 0, y: 0 },
-    fillLinearGradientEndPoint: { x: 0, y: size },
-    fillLinearGradientColorStops: [0, palette[1000], 1, palette[1000]],
-    shadowColor: palette[1100],
-    fontStyle: "bold",
-    fontFamily: "Neue-Kabel",
-    shadowBlur: 2.3,
-    shadowOffsetX: -1.6,
-    shadowOffsetY: 1.6,
-  };
+    const headerTextStyle = {
+      fillLinearGradientStartPoint: { x: 0, y: 0 },
+      fillLinearGradientEndPoint: { x: 0, y: scaledSize },
+      fillLinearGradientColorStops: [
+        0,
+        palette[1000],
+        0.5,
+        palette[1100],
+        1,
+        palette[1100],
+      ],
+      shadowColor: palette[900],
+      fontStyle: "bold",
+      fontFamily: "Neue-Kabel",
+      shadowBlur: 2.3,
+      shadowOffsetX: -1.6,
+      shadowOffsetY: 1.6,
+    };
+  
+    const bodyTextStyle = {
+      fillLinearGradientStartPoint: { x: 0, y: 0 },
+      fillLinearGradientEndPoint: { x: 0, y: scaledSize },
+      fillLinearGradientColorStops: [0, palette[1000], 1, palette[1100]],
+      shadowColor: palette[900],
+      fontStyle: "bold",
+      fontFamily: "Neue-Kabel",
+      shadowBlur: 2.3,
+      shadowOffsetX: -1.6,
+      shadowOffsetY: 1.6,
+    };
+
+  const bezelStrokeColorInner = ctx?.createLinearGradient(0, 0, size, size);
+  bezelStrokeColorInner?.addColorStop(0, palette[800]);
+  bezelStrokeColorInner?.addColorStop(1 / 3, palette[100]);
+  bezelStrokeColorInner?.addColorStop(1 / 2, palette[800]);
+  bezelStrokeColorInner?.addColorStop(1, palette[300]);
 
   return (
     <div
@@ -107,6 +122,15 @@ const TechaeonCoin3BackSide = ({
             ]}
           />
 
+          <Path
+            x={10}
+            y={10}
+            scale={{ x: 0.925, y: 0.925 }}
+            data={shape}
+            strokeWidth={5}
+            stroke={bezelStrokeColorInner}
+          />
+
           {eventInfo && (
             <>
               <Group y={size * 0.2}>
@@ -120,33 +144,33 @@ const TechaeonCoin3BackSide = ({
                   x={fullSize * 0.1}
                   width={size - size * 0.2}
                   fontSize={22}
-                  fontStyle={textStyle.fontStyle}
-                  fontFamily={textStyle.fontFamily}
+                  fontStyle={headerTextStyle.fontStyle}
+                  fontFamily={headerTextStyle.fontFamily}
                   fillLinearGradientStartPoint={
-                    textStyle.fillLinearGradientStartPoint
+                    headerTextStyle.fillLinearGradientStartPoint
                   }
                   fillLinearGradientEndPoint={
-                    textStyle.fillLinearGradientEndPoint
+                    headerTextStyle.fillLinearGradientEndPoint
                   }
                   fillLinearGradientColorStops={
-                    textStyle.fillLinearGradientColorStops
+                    headerTextStyle.fillLinearGradientColorStops
                   }
-                  shadowColor={textStyle.shadowColor}
+                  shadowColor={headerTextStyle.shadowColor}
                   shadowEnabled
-                  shadowOffsetX={textStyle.shadowOffsetX}
-                  shadowOffsetY={textStyle.shadowOffsetY}
-                  shadowBlur={textStyle.shadowBlur}
+                  shadowOffsetX={headerTextStyle.shadowOffsetX}
+                  shadowOffsetY={headerTextStyle.shadowOffsetY}
+                  shadowBlur={headerTextStyle.shadowBlur}
                 />
                 <Group x={size * 0.25} y={size * 0.25}>
-                  <Rect
+                <Rect
                     width={size * 0.5}
                     height={30}
-                    fill={palette[600]}
+                    fill={palette[900]}
                     cornerRadius={5}
-                    shadowBlur={5}
+                    shadowBlur={1.5}
                     shadowOffsetX={0}
                     shadowOffsetY={3}
-                    shadowColor={palette[900]}
+                    shadowColor={palette[400]}
                   />
                   <Text
                     y={7}
@@ -154,22 +178,22 @@ const TechaeonCoin3BackSide = ({
                     text={eventInfo.date}
                     align="center"
                     fontSize={18}
-                    fontStyle={textStyle.fontStyle}
-                    fontFamily={textStyle.fontFamily}
+                    fontStyle={bodyTextStyle.fontStyle}
+                    fontFamily={bodyTextStyle.fontFamily}
                     fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
+                      bodyTextStyle.fillLinearGradientStartPoint
                     }
                     fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
+                      bodyTextStyle.fillLinearGradientEndPoint
                     }
                     fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
+                      bodyTextStyle.fillLinearGradientColorStops
                     }
-                    shadowColor={textStyle.shadowColor}
+                    shadowColor={bodyTextStyle.shadowColor}
                     shadowEnabled
-                    shadowOffsetX={textStyle.shadowOffsetX}
-                    shadowOffsetY={textStyle.shadowOffsetY}
-                    shadowBlur={textStyle.shadowBlur}
+                    shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                    shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                    shadowBlur={bodyTextStyle.shadowBlur}
                   />
                 </Group>
                 <Group x={size * 0.23} y={size * 0.42}>
@@ -179,19 +203,19 @@ const TechaeonCoin3BackSide = ({
                       x={-14}
                       data={locationIconPath}
                       fillLinearGradientStartPoint={
-                        textStyle.fillLinearGradientStartPoint
+                        bodyTextStyle.fillLinearGradientStartPoint
                       }
                       fillLinearGradientEndPoint={
-                        textStyle.fillLinearGradientEndPoint
+                        bodyTextStyle.fillLinearGradientEndPoint
                       }
                       fillLinearGradientColorStops={
-                        textStyle.fillLinearGradientColorStops
+                        bodyTextStyle.fillLinearGradientColorStops
                       }
-                      shadowColor={textStyle.shadowColor}
+                      shadowColor={bodyTextStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={textStyle.shadowOffsetX}
-                      shadowOffsetY={textStyle.shadowOffsetY}
-                      shadowBlur={textStyle.shadowBlur}
+                      shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                      shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                      shadowBlur={bodyTextStyle.shadowBlur}
                       scale={{ x: 0.8, y: 0.8 }}
                     />
 
@@ -200,22 +224,22 @@ const TechaeonCoin3BackSide = ({
                       text={`${eventInfo.location}`}
                       align="center"
                       fontSize={13}
-                      fontStyle={textStyle.fontStyle}
-                      fontFamily={textStyle.fontFamily}
+                      fontStyle={bodyTextStyle.fontStyle}
+                      fontFamily={bodyTextStyle.fontFamily}
                       fillLinearGradientStartPoint={
-                        textStyle.fillLinearGradientStartPoint
+                        bodyTextStyle.fillLinearGradientStartPoint
                       }
                       fillLinearGradientEndPoint={
-                        textStyle.fillLinearGradientEndPoint
+                        bodyTextStyle.fillLinearGradientEndPoint
                       }
                       fillLinearGradientColorStops={
-                        textStyle.fillLinearGradientColorStops
+                        bodyTextStyle.fillLinearGradientColorStops
                       }
-                      shadowColor={textStyle.shadowColor}
+                      shadowColor={bodyTextStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={textStyle.shadowOffsetX}
-                      shadowOffsetY={textStyle.shadowOffsetY}
-                      shadowBlur={textStyle.shadowBlur}
+                      shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                      shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                      shadowBlur={bodyTextStyle.shadowBlur}
                     />
                   </Group>
                   <Group x={size * 0.35}>
@@ -224,41 +248,41 @@ const TechaeonCoin3BackSide = ({
                       x={-17}
                       data={timeIconPath}
                       fillLinearGradientStartPoint={
-                        textStyle.fillLinearGradientStartPoint
+                        bodyTextStyle.fillLinearGradientStartPoint
                       }
                       fillLinearGradientEndPoint={
-                        textStyle.fillLinearGradientEndPoint
+                        bodyTextStyle.fillLinearGradientEndPoint
                       }
                       fillLinearGradientColorStops={
-                        textStyle.fillLinearGradientColorStops
+                        bodyTextStyle.fillLinearGradientColorStops
                       }
-                      shadowColor={textStyle.shadowColor}
+                      shadowColor={bodyTextStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={textStyle.shadowOffsetX}
-                      shadowOffsetY={textStyle.shadowOffsetY}
-                      shadowBlur={textStyle.shadowBlur}
+                      shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                      shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                      shadowBlur={bodyTextStyle.shadowBlur}
                       scale={{ x: 0.9, y: 0.9 }}
                     />
                     <Text
                       text={eventInfo.time}
                       align="center"
                       fontSize={13}
-                      fontStyle={textStyle.fontStyle}
-                      fontFamily={textStyle.fontFamily}
+                      fontStyle={bodyTextStyle.fontStyle}
+                      fontFamily={bodyTextStyle.fontFamily}
                       fillLinearGradientStartPoint={
-                        textStyle.fillLinearGradientStartPoint
+                        bodyTextStyle.fillLinearGradientStartPoint
                       }
                       fillLinearGradientEndPoint={
-                        textStyle.fillLinearGradientEndPoint
+                        bodyTextStyle.fillLinearGradientEndPoint
                       }
                       fillLinearGradientColorStops={
-                        textStyle.fillLinearGradientColorStops
+                        bodyTextStyle.fillLinearGradientColorStops
                       }
-                      shadowColor={textStyle.shadowColor}
+                      shadowColor={bodyTextStyle.shadowColor}
                       shadowEnabled
-                      shadowOffsetX={textStyle.shadowOffsetX}
-                      shadowOffsetY={textStyle.shadowOffsetY}
-                      shadowBlur={textStyle.shadowBlur}
+                      shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                      shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                      shadowBlur={bodyTextStyle.shadowBlur}
                     />
                   </Group>
                 </Group>
@@ -268,22 +292,22 @@ const TechaeonCoin3BackSide = ({
                     width={size * 0.5}
                     align="center"
                     fontSize={13}
-                    fontStyle={textStyle.fontStyle}
-                    fontFamily={textStyle.fontFamily}
+                    fontStyle={bodyTextStyle.fontStyle}
+                    fontFamily={bodyTextStyle.fontFamily}
                     fillLinearGradientStartPoint={
-                      textStyle.fillLinearGradientStartPoint
+                      bodyTextStyle.fillLinearGradientStartPoint
                     }
                     fillLinearGradientEndPoint={
-                      textStyle.fillLinearGradientEndPoint
+                      bodyTextStyle.fillLinearGradientEndPoint
                     }
                     fillLinearGradientColorStops={
-                      textStyle.fillLinearGradientColorStops
+                      bodyTextStyle.fillLinearGradientColorStops
                     }
-                    shadowColor={textStyle.shadowColor}
+                    shadowColor={bodyTextStyle.shadowColor}
                     shadowEnabled
-                    shadowOffsetX={textStyle.shadowOffsetX}
-                    shadowOffsetY={textStyle.shadowOffsetY}
-                    shadowBlur={textStyle.shadowBlur}
+                    shadowOffsetX={bodyTextStyle.shadowOffsetX}
+                    shadowOffsetY={bodyTextStyle.shadowOffsetY}
+                    shadowBlur={bodyTextStyle.shadowBlur}
                   />
                 </Group>
               </Group>
